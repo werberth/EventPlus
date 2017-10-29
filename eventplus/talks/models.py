@@ -25,7 +25,14 @@ class Talk(models.Model):
     speaker = models.ForeignKey(
         Speaker,
         related_name='talks',
-        verbose_name=_('Speaker')
+        verbose_name=_('Speaker'),
+        null=False
+    )
+    room = models.ForeignKey(
+        Room,
+        related_name='talks',
+        verbose_name=_('Room'),
+        null=False,
     )
     description = models.TextField(_('Description'), blank=True)
     start_at = models.TimeField(_('Start at'))
