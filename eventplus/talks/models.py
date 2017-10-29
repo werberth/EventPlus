@@ -3,6 +3,13 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
+class Room(models.Model):
+    name = models.CharField(_('Name'), max_length=255)
+
+    def __str__(self):
+        return "{}: {}".format(_('Room'), self.name)
+
+
 class Speaker(models.Model):
     name = models.CharField(_('Name'), max_length=255)
     slug = models.SlugField(_('Slug'))
