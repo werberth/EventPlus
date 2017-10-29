@@ -29,6 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'compressor',
+    'eventplus.accounts',
+    'eventplus.talks',
+    'eventplus.events'
 ]
 
 MIDDLEWARE = [
