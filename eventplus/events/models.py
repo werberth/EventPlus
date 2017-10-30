@@ -24,7 +24,7 @@ class Supporters(models.Model):
     event = models.ForeignKey(
         Event,
         related_name='supporters',
-        verbose_name=_('Supporters')
+        verbose_name=_('Event')
     )
 
     name = models.CharField(max_length=155)
