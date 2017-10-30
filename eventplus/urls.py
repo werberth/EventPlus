@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
@@ -8,6 +8,7 @@ from django.views.i18n import JavaScriptCatalog
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+    url(r'^events/', include('eventplus.events.urls', namespace='events')),
 ]
 
 if settings.DEBUG:
