@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block static_files %}
+	{% include "utils/static_files_imports.html" %}
+	{{ form.media }}
+{% endblock static_files %}
+
+{% block content %}
+<div class="ui grid">
+	<div class="nine wide column">
+		<div class="ui clearing segment">
+			<form class="ui form" method="POST" action="">
+			 {% csrf_token %}
+				<div class="field">	
+					<label>{{ form.name.label}}</label>
+					{{ form.name }} 
+				</div>
+				
+				<div class="field">	
+					<label>{{ form.address.label}}</label>
+					{{ form.address }} 
+				</div>
+
+				<div class="field">	
+					<label>{{ form.city.label}}</label>
+					{{ form.city }} 
+				</div>
+
+				<div class="field">	
+					<label>{{ form.country.label}}</label>
+					{{ form.country }} 
+				</div>
+
+				<div class="two fields">
+					<div class="field">
+						<label>{{ form.start_date.label}}</label>	
+						<div class="ui piled segment form-date">
+							{{ form.start_date }} 
+						</div>
+					</div>
+					
+					<div class="field">	
+						<label>{{ form.end_date.label}}</label>
+						<div class="ui piled segment form-date">
+							{{ form.end_date }} 
+						</div>
+					</div>
+				</div>
+				 {% if form.errors %}
+                  <div>
+                    <ul>{{ form.non_field_errors }}</ul>
+                    {% for field in form %} 
+                      {% if field.errors %}
+                      <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+
+				<button type="submit" class="ui blue submit button">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
