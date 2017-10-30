@@ -100,6 +100,10 @@ LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Fortaleza'
 
+DATETIME_INPUT_FORMATS = [
+    '%d/%m/%Y %H:%M:%S',
+]
+
 USE_I18N = True
 
 USE_L10N = True
