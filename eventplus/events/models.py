@@ -1,9 +1,11 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.template.defaultfilters import slugify
 
 
 class Event(models.Model):
     name = models.CharField(_("Name"), max_length=155)
+    slug = models.SlugField(_("Slug"), unique=True, blank=True)
     address = models.CharField(max_length=300)
     city = models.CharField(max_length=150)
     country = models.CharField(max_length=150)
@@ -12,6 +14,10 @@ class Event(models.Model):
 
     def __str__(self):
         return '{0} - {1}, {2}'.format(self.name, self.country, self.city)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Event, self).save(*args, **kwargs)
 
 
 class Supporters(models.Model):
