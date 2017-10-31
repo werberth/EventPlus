@@ -1,8 +1,8 @@
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy as r
 
-from .models import Room
-from .forms import RoomForm
+from .models import Room, Talk
+from .forms import RoomForm, TalkForm
 
 
 class CreateRoomView(generic.CreateView):
@@ -24,3 +24,9 @@ class DeleteRoomView(generic.DeleteView):
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
+
+class CreateTalkView(generic.CreateView):
+    model = Talk
+    form_class = TalkForm
+    template_name = 'talks/crud_talk.html'

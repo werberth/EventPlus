@@ -3,11 +3,12 @@ from django.conf.urls import url
 from .views import (
     CreateRoomView,
     UpdateRoomView,
-    DeleteRoomView
+    DeleteRoomView,
+    CreateTalkView
 )
 
 urlpatterns = [
-    url(r'^room/create/$', CreateRoomView.as_view(), name="create"),
+    url(r'^room/create/$', CreateRoomView.as_view(), name="room_create"),
     url(
         r'^room/update/(?P<pk>\d+)/$',
         UpdateRoomView.as_view(),
@@ -18,4 +19,5 @@ urlpatterns = [
         DeleteRoomView.as_view(),
         name="room_delete"
     ),
+    url(r'^create/$', CreateTalkView.as_view(), name="create"),
 ]
