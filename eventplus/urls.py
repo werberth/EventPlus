@@ -10,6 +10,13 @@ urlpatterns = [
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     url(r'^events/', include('eventplus.events.urls', namespace='events')),
     url(r'^talks/', include('eventplus.talks.urls', namespace='talks')),
+    url(
+        r'^accounts/',
+        include(
+            'eventplus.accounts.urls',
+            namespace='accounts'
+        )
+    )
 ]
 
 if settings.DEBUG:
