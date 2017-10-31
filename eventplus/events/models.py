@@ -8,12 +8,12 @@ class Event(models.Model):
     slug = models.SlugField(_("Slug"), unique=True, blank=True)
     address = models.CharField(max_length=300)
     city = models.CharField(max_length=150)
-    country = models.CharField(max_length=150)
+    state = models.CharField(max_length=150)
     start_date = models.DateTimeField(_('Start Date'))
     end_date = models.DateTimeField(_('End Date'))
 
     def __str__(self):
-        return '{0} - {1}, {2}'.format(self.name, self.country, self.city)
+        return '{0} - {1}, {2}'.format(self.name, self.state, self.city)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
