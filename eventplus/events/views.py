@@ -36,3 +36,17 @@ class CreateSupporterView(generic.CreateView):
     model = Supporters
     form_class = SupporterForm
     template_name = 'events/crud_supporter.html'
+
+
+class UpdateSupporterView(generic.UpdateView):
+    model = Supporters
+    form_class = SupporterForm
+    template_name = 'events/crud_supporter.html'
+
+
+class DeleteSupporterView(generic.DeleteView):
+    model = Supporters
+    success_url = r('events:supporter_create')
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
