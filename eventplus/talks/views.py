@@ -45,3 +45,10 @@ class DeleteTalkView(generic.DeleteView):
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
+
+class ListTalkView(generic.ListView):
+    model = Talk
+    queryset = Talk.objects.all()
+    template_name = 'events/list_talks.html'
+    context_object_name = 'talks'

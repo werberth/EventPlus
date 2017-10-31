@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="ui container">
+		<div class="ui column grid">
+			<div class="row">
+				<div class="column">
+					<div class="ui relaxed divided animated list">
+						{% for talk in talks %}	
+							  <div class="item">
+							    <div class="content">
+							      <a class="header">{{ talk.talk_title }}</a>
+							      <div class="description">Dia {{ talk.date|date:'d/m/Y' }}, de {{ talk.start_at|time:"H:i" }} até as {{ talk.end|time:"H:i" }}</div>
+							    </div>
+							  </div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

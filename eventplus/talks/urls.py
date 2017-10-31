@@ -6,7 +6,8 @@ from .views import (
     DeleteRoomView,
     CreateTalkView,
     UpdateTalkView,
-    DeleteTalkView
+    DeleteTalkView,
+    ListTalkView
 )
 
 urlpatterns = [
@@ -32,4 +33,5 @@ urlpatterns = [
         DeleteTalkView.as_view(),
         name="delete"
     ),
+    url(r'^$', ListTalkView.as_view(), name="list"),
 ]
