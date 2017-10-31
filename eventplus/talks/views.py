@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.views import generic
 
-# Create your views here.
+from .models import Room
+from .forms import RoomForm
+
+
+class CreateRoomView(generic.CreateView):
+    model = Room
+    form_class = RoomForm
+    template_name = 'talks/crud_room.html'

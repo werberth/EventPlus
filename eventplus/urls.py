@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     url(r'^events/', include('eventplus.events.urls', namespace='events')),
+    url(r'^talks/', include('eventplus.talks.urls', namespace='talks')),
 ]
 
 if settings.DEBUG:
