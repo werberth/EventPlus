@@ -4,7 +4,9 @@ from .views import (
     CreateRoomView,
     UpdateRoomView,
     DeleteRoomView,
-    CreateTalkView
+    CreateTalkView,
+    UpdateTalkView,
+    DeleteTalkView
 )
 
 urlpatterns = [
@@ -20,4 +22,14 @@ urlpatterns = [
         name="room_delete"
     ),
     url(r'^create/$', CreateTalkView.as_view(), name="create"),
+    url(
+        r'^update/(?P<pk>\d+)/$',
+        UpdateTalkView.as_view(),
+        name="update"
+    ),
+    url(
+        r'^delete/(?P<pk>\d+)/$',
+        DeleteTalkView.as_view(),
+        name="delete"
+    ),
 ]
