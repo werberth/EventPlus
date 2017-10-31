@@ -11,11 +11,11 @@ urlpatterns = [
     url(
         r'^room/update/(?P<pk>\d+)/$',
         UpdateRoomView.as_view(),
-        name="supporter_update"
+        name="room_update"
     ),
     url(
         r'^room/delete/(?P<pk>\d+)/$',
         DeleteRoomView.as_view(),
-        name="supporter_delete"
+        name="room_delete"
     ),
 ]
