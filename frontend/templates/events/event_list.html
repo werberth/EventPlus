@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="ui container">
+		<div class="ui column grid">
+			<div class="row">
+				<div class="column">
+					<div class="ui relaxed divided animated list">
+						{% for event in events %}	
+							  <div class="item">
+							    <div class="content">
+							      <a class="header">{{ event.name }} - {{ event.state }}, {{ event.city }}</a>
+							      <div class="description">De {{ event.start_date|date:'d/m/Y' }} a {{ event.end_date|date:'d/m/Y'}}</div>
+							    </div>
+							  </div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

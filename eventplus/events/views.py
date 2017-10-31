@@ -1,8 +1,8 @@
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy as r
 
-from .models import Event
-from .forms import CreateEventForm
+from .models import Event, Supporters
+from .forms import CreateEventForm, SupporterForm
 
 
 class CreateEventView(generic.CreateView):
@@ -23,3 +23,16 @@ class DeleteEventView(generic.DeleteView):
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
+
+class ListEventView(generic.ListView):
+    model = Event
+    queryset = Event.objects.all()
+    template_name = 'events/list_events.html'
+    context_object_name = 'events'
+
+
+class CreateSupporterView(generic.CreateView):
+    model = Supporters
+    form_class = SupporterForm
+    template_name = 'events/crud_supporter.html'

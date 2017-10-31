@@ -1,6 +1,12 @@
 from django.conf.urls import url
 
-from .views import CreateEventView, UpdateEventView, DeleteEventView
+from .views import (
+    CreateEventView,
+    UpdateEventView,
+    DeleteEventView,
+    ListEventView,
+    CreateSupporterView
+)
 
 urlpatterns = [
     url(r'^create/$', CreateEventView.as_view(), name="create"),
@@ -13,5 +19,11 @@ urlpatterns = [
         r'^delete/(?P<slug>[\w-]+)$',
         DeleteEventView.as_view(),
         name="delete"
+    ),
+    url(r'^$', ListEventView.as_view(), name="list"),
+    url(
+        r'^supporter/create/$',
+        CreateSupporterView.as_view(),
+        name="supporter_create"
     )
 ]
