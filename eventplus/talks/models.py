@@ -31,8 +31,8 @@ class Talk(models.Model):
     )
     start_at = models.TimeField(_('Start at'))
     end = models.TimeField(_('End'))
-    date = models.DateTimeField(_('Date'))
+    date = models.DateField(_('Date'))
     description_file = models.URLField(_('Explanatory File'))
 
     def __str__(self):
-        return "{0} - {1}".format(self.title, self.speaker)
+        return "{0} - {1}".format(self.talk_title, self.speaker_name)
