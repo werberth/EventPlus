@@ -19,10 +19,13 @@ class Room(models.Model):
 
 class Talk(models.Model):
     talk_title = models.CharField(_('Talk Title'), max_length=255)
-    talk_description = models.TextField(_('Description'), blank=True)
-    speaker_name = models.CharField(_('Name'), max_length=255)
-    speaker_photo = models.URLField(_('Photograph'))
-    speaker_description = models.TextField(_('Description'), blank=True)
+    talk_description = models.TextField(_('Talk Description'), blank=True)
+    speaker_name = models.CharField(_('Speaker Name'), max_length=255)
+    speaker_photo = models.URLField(_('Speaker Photograph'))
+    speaker_description = models.TextField(
+        _('Speaker Description'),
+        blank=True
+    )
     room = models.ForeignKey(
         Room,
         related_name='talks',
