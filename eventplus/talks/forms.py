@@ -23,17 +23,25 @@ class TalkForm(forms.ModelForm):
         day = self.cleaned_data['date']
         room = self.cleaned_data['room']
 
-        if(
-            Talk.objects.filter(
-                start_at__gte=initial,
-                end__lte=end,
-                date=day,
-                room=room
-            )
-        ).exists():
+        if(initial < end):
+            if(
+                Talk.objects.filter(
+                    start_at__gte=initial,
+                    end__lte=end,
+                    date=day,
+                    room=room
+                )
+            ).exists():
+                raise forms.ValidationError(
+                    _("Já existe uma palestra nesse horario, verfique a lista\
+                    de palestras para saber quais horarios já extão reservados\
+                    e tente novamente")
+                )
+
+            return super(TalkForm, self).clean()
+        else:
             raise forms.ValidationError(
-                _("Já existe uma palestra nesse horario, verfique a lista\
-                 de palestras para saber quais horarios já extão reservados\
-                 e tente novamente")
+                _("Periodo de Inicio ou Fim da Palestra inválido(s).\
+                Verfique se o horário de inicio da Palestra é anterior\
+                ao horário de termino e vice-versa.")
             )
-        return super(TalkForm, self).clean()
