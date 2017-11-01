@@ -1,0 +1,29 @@
+.picker__date-display, .picker__weekday-display{
+    background-color: #0d47a1;
+}
+
+div{
+	.picker__day.picker__day--infocus{
+		.picker__day--selected.picker__day--highlighted {
+        	background-color: rgba(66, 133, 244, 0.79);
+        }
+    }
+
+    .picker__date-display {
+    	color: #ffd600 !important;
+    }
+}
+
+button {
+	.picker__today, .picker__close {
+    	color: rgba(66, 133, 244, 0.79);
+    }
+}
+
+.clockpicker-display {
+	color: #ffd600 !important;
+
+	.text-primary{
+		color: #ffd600 !important;
+	}
+}
