@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'compressor',
+    'widget_tweaks',
     'eventplus.accounts',
     'eventplus.talks',
     'eventplus.events'
