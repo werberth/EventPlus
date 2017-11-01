@@ -47,3 +47,19 @@ button {
         float: right;
     }
 }
+
+.card-bigger {
+    width: 1000px;
+    padding-left: 7em;
+    padding-top: 2em;
+    margin-bottom: 50px;
+    margin-left: -2em;
+}
+
+.error {
+    ul {
+        li {
+            font-size: 14px;
+        } 
+    }
+}
