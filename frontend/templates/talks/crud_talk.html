@@ -1,32 +1,81 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
-<div class="ui grid">
-	<div class="nine wide column">
-		<div class="ui clearing segment">
-			<form class="ui form" method="POST" action="">
-			 {% csrf_token %}
-				{% for field in form %}
-				<div class="field">	
-					<label>{{ field.label}}</label>
-					{{ field }} 
-				</div>
-				{% endfor %}
-
-				{% if form.errors %}
-                  <div>
-                    <ul>{{ form.non_field_errors }}</ul>
-                    {% for field in form %} 
-                      {% if field.errors %}
-                      <li>{{ field.label }}: {{ field.errors|striptags }}</li>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                {% endif %}
-
-				<button type="submit" class="ui blue submit button">Submit</button>
-			</form>
+<div class="container">
+	<form method="POST" action="">
+	 {% csrf_token %}
+	 	<div class= "row">
+			<div class="input-field col s6">
+				<label>{{ form.talk_title.label }}</label>
+				{% render_field form.talk_title class="validate" %} 
+			</div>
+			<div class="input-field col s6">
+				<label>{{ form.speaker_name.label }}</label>
+				{% render_field form.speaker_name class="validate" %} 
+			</div>
 		</div>
-	</div>
+
+		<div class= "row">
+			<div class="input-field col s6">
+				<label>{{ form.talk_description.label }}</label>
+				{% render_field form.talk_description class="materialize-textarea" %} 
+			</div>
+			<div class="input-field col s6">
+				<label>{{ form.speaker_description.label }}</label>
+				{% render_field form.speaker_description class="materialize-textarea" %} 
+			</div>
+		</div>
+
+
+		<div class= "row">
+			<div class="input-field col s6">
+				<label>{{ form.speaker_photo.label }}</label>
+				{% render_field form.speaker_photo class="validate" title="url de uma foto do speaker" %} 
+			</div>
+			<div class="col s6">
+				<label>{{ form.room.label }}</label>
+				{% render_field form.room class="validate" %} 
+			</div>
+		</div>
+
+		<div class= "row">
+			<div class=" col s6">
+				<label>{{ form.start_at.label }}</label>
+				{% render_field form.start_at class="timepicker" %}
+			</div>
+
+			<div class=" col s6">
+				<label>{{ form.end.label }}</label>
+				{% render_field form.end class="timepicker" %}
+			</div>
+		</div>
+
+		<div class= "row">
+			<div class="col s6">
+				<label>{{ form.label }}</label>
+				{% render_field form.date class="datepicker" %}
+			</div>
+
+			<div class="input-field col s6">
+				<label>{{ form.description_file.label }}</label>
+				{% render_field form.description_file class="validate"  title="Link para um arquivo de descrição da palestra" %}
+			</div>
+		</div>
+
+
+		{% if form.errors %}
+          <div>
+            <ul>{{ form.non_field_errors }}</ul>
+            {% for field in form %} 
+              {% if field.errors %}
+              <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+		<button type="submit" class="right waves-effect waves-light btn blue">Submit</button>
+	</form>
 </div>
-{% endblock %}
+{% endblock content %}
