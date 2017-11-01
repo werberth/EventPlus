@@ -9,8 +9,8 @@ class Event(models.Model):
     address = models.CharField(max_length=300)
     city = models.CharField(max_length=150)
     state = models.CharField(max_length=150)
-    start_date = models.DateTimeField(_('Start Date'))
-    end_date = models.DateTimeField(_('End Date'))
+    start_date = models.DateField(_('Start Date'))
+    end_date = models.DateField(_('End Date'))
 
     def __str__(self):
         return '{0} - {1}, {2}'.format(self.name, self.state, self.city)

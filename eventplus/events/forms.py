@@ -1,13 +1,10 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from django.contrib.admin import widgets
 
 from .models import Event, Supporters
 
 
 class CreateEventForm(forms.ModelForm):
-    start_date = forms.SplitDateTimeField(widget=widgets.AdminSplitDateTime())
-    end_date = forms.SplitDateTimeField(widget=widgets.AdminSplitDateTime())
 
     class Meta:
         model = Event
