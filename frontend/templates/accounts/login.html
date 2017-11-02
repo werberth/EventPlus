@@ -1,32 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="ui grid">
-	<div class="nine wide column">
-		<div class="ui clearing segment">
-			<form class="ui form" method="POST" action="">
+<div class="container">
+	<div class="card-login card">
+			<form method="POST" action="">
 			 {% csrf_token %}
 				{% for field in form %}
-				<div class="field">	
-					<label>{{ field.label}}</label>
-					{{ field }} 
-				</div>
+					<div class="row">
+						<div class="input-field col s7 offset-s2">	
+							<label>{{ field.label}}</label>
+							{{ field }}  
+						</div>
+					</div>
 				{% endfor %}
 
-				{% if form.errors %}
-                  <div>
-                    <ul>{{ form.non_field_errors }}</ul>
-                    {% for field in form %} 
-                      {% if field.errors %}
-                      <li>{{ field.label }}: {{ field.errors|striptags }}</li>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                {% endif %}
+				{% include "utils/forms_error.html" %}
 
-				<button type="submit" class="ui blue submit button">Submit</button>
+				<div class="card-action">
+			        <div class="row card-bottom-margin">
+			       		<button type="submit" class=" waves-effect waves-light btn blue">Submit</button>
+			    	</div>
+			    </div>
 			</form>
 		</div>
 	</div>
 </div>
 {% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+	//modal settings
+	$('#modal').modal();
+	$('#modal').modal('open');	
+</script>
+{% endblock scripts %}

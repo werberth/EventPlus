@@ -1,0 +1,18 @@
+{% if form.errors %}
+	  <!-- Modal Structure -->
+	  <div id="modal" class="modal modal-footer">
+	    <div class="modal-content">
+	    	<ul class="col s5 red-text">
+	    	{{ form.non_field_errors }}
+	    	</ul>
+			{% for field in form %} 
+              {% if field.errors %}
+              <li class="red-text">{{ field.label }}: {{ field.errors|striptags }}</li>
+              {% endif %}
+            {% endfor %}
+	    </div>
+	    <div class="modal-footer">
+	      <a class="modal-action modal-close waves-effect waves-effect waves-light btn blue">Ok</a>	
+	    </div>
+	  </div>
+{% endif %}
