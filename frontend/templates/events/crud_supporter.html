@@ -1,32 +1,54 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
 
 {% block content %}
-<div class="ui grid">
-	<div class="nine wide column">
-		<div class="ui clearing segment">
-			<form class="ui form" method="POST" action="">
+<div class="container">
+	<div class="card">
+			<form method="POST" action="">
 			 {% csrf_token %}
-				{% for field in form %}
-				<div class="field">	
-					<label>{{ field.label}}</label>
-					{{ field }} 
+				<div class= "row">
+					<div class="col s7 offset-s2">
+						<label>{{ form.event.label}}</label>
+						{{ form.event }}
+					</div>
 				</div>
-				{% endfor %}
+				<div class="row">
+					<div class="col s7 offset-s2">
+						<label>{{ form.name.label}}</label>
+						{{ form.name }} 
+					</div>
+				</div>
 
-				{% if form.errors %}
-                  <div>
-                    <ul>{{ form.non_field_errors }}</ul>
-                    {% for field in form %} 
-                      {% if field.errors %}
-                      <li>{{ field.label }}: {{ field.errors|striptags }}</li>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                {% endif %}
+				<div class="row">
+					<div class="col s7 offset-s2">
+						<label>{{ form.types.label}}</label>
+						{{ form.types }} 
+					</div>
+				</div>
 
-				<button type="submit" class="ui blue submit button">Submit</button>
+				<div class="row">
+					<div class="col s7 offset-s2">
+						<label>{{ form.image_logo.label}}</label>
+						{% render_field form.image_logo placeholder="URL da image/logo do patrocinador" %}
+					</div>
+				</div>
+
+
+
+				{% include "utils/forms_error.html" %}
+
+				<div class="card-action">
+			        <div class="row card-bottom-margin">
+			       		<button type="submit" class=" waves-effect waves-light btn blue">Submit</button>
+			    	</div>
+			    </div>
 			</form>
 		</div>
 	</div>
 </div>
 {% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static 'js/modal_script.js' %}"></script>
+{% endblock scripts %}
