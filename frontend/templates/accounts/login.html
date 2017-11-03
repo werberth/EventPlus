@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
 <div class="container">
@@ -28,9 +29,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript">
-	//modal settings
-	$('#modal').modal();
-	$('#modal').modal('open');	
-</script>
+<script type="text/javascript" src="{% static 'js/modal_script.js' %}"></script>
 {% endblock scripts %}
