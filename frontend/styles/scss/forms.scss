@@ -1,17 +1,17 @@
 input{
     &:focus{
-        border-bottom: 1px solid #0d47a1 !important;
+        border-bottom: 1px solid $blue-theme !important;
     }
 }
 
 .select-wrapper {
     input[value], ul li span {
-        color:  #0d47a1;
+        color:  $blue-theme;
     }
 }
 
 .picker__date-display, .picker__weekday-display{
-    background-color: #0d47a1;
+    background-color: $blue-theme;
 }
 
 div{
@@ -22,7 +22,7 @@ div{
     }
 
     .picker__date-display {
-    	color: #ffd600 !important;
+    	color: $yellow-theme !important;
     }
 }
 
@@ -34,10 +34,10 @@ button {
 }
 
 .clockpicker-display {
-	color: #ffd600 !important;
+	color: $yellow-theme !important;
 
 	.text-primary{
-		color: #ffd600 !important;
+		color: $yellow-theme !important;
 	}
 }
 
