@@ -8,7 +8,7 @@ from .forms import CreateEventForm, SupporterForm
 class CreateEventView(generic.CreateView):
     model = Event
     form_class = CreateEventForm
-    template_name = 'events/create_event.html'
+    template_name = 'events/crud_event.html'
 
 
 class UpdateEventView(generic.UpdateView):
