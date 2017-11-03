@@ -14,7 +14,7 @@ class Room(models.Model):
     )
 
     def __str__(self):
-        return "{}: {}".format(_('Room'), self.name)
+        return "{}".format(self.name)
 
 
 class Talk(models.Model):
