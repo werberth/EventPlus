@@ -18,6 +18,11 @@ class Room(models.Model):
 
 
 class Talk(models.Model):
+    event = models.ForeignKey(
+        Event,
+        related_name='event',
+        verbose_name=_('Events'),
+    )
     talk_title = models.CharField(_('Talk Title'), max_length=255)
     talk_description = models.TextField(_('Talk Description'), blank=True)
     speaker_name = models.CharField(_('Speaker Name'), max_length=255)
