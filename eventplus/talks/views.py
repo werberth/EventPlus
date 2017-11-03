@@ -1,6 +1,7 @@
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy as r
 
+from eventplus.events.models import Event
 from .models import Room, Talk
 from .forms import RoomForm, TalkForm
 
@@ -30,6 +31,11 @@ class CreateTalkView(generic.CreateView):
     model = Talk
     form_class = TalkForm
     template_name = 'talks/crud_talk.html'
+
+    def get_form_kwargs(self):
+        kwargs = super(CreateTalkView, self).get_form_kwargs()
+        kwargs['event'] = Event.objects.get(pk=self.kwargs['pk'])
+        return kwargs
 
 
 class UpdateTalkView(generic.UpdateView):

@@ -22,7 +22,7 @@ urlpatterns = [
         DeleteRoomView.as_view(),
         name="room_delete"
     ),
-    url(r'^create/$', CreateTalkView.as_view(), name="create"),
+    url(r'^create/(?P<pk>\d+)/$', CreateTalkView.as_view(), name="create"),
     url(
         r'^update/(?P<pk>\d+)/$',
         UpdateTalkView.as_view(),

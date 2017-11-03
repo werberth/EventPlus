@@ -1,5 +1,3 @@
-import datetime
-
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
@@ -15,13 +13,18 @@ class RoomForm(forms.ModelForm):
 class TalkForm(forms.ModelForm):
     class Meta:
         model = Talk
-        fields = '__all__'
+        exclude = ['event']
+
+    def __init__(self, *args, **kwargs):
+        self.event = kwargs.pop('event')
+        super(TalkForm, self).__init__(*args, **kwargs)
 
     def clean(self):
-        initial = self.cleaned_data['start_at']
-        end = self.cleaned_data['end']
-        day = self.cleaned_data['date']
-        room = self.cleaned_data['room']
+        cleaned_data = super(TalkForm, self).clean()
+        initial = cleaned_data.get('start_at')
+        end = cleaned_data.get('end')
+        day = cleaned_data.get('date')
+        room = cleaned_data.get('room')
 
         if(initial < end):
             if(
@@ -45,3 +48,18 @@ class TalkForm(forms.ModelForm):
                 Verfique se o horário de inicio da Palestra é anterior\
                 ao horário de termino e vice-versa.")
             )
+
+    def clean_date(self):
+        data = self.cleaned_data['date']
+        if not (self.event.start_date <= data <= self.event.end_date):
+            raise forms.ValidationError(
+                _("Invalid date! Make sure the reported date is in the\
+                interval between the start and end date of the event.")
+            )
+        return data
+
+    def save(self, commit=True):
+        talk = super().save(commit=False)
+        talk.event = self.event
+        talk.save()
+        return talk
