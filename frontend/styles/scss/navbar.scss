@@ -1,15 +1,23 @@
+@mixin yellow_bold() {
+	color: $yellow-theme;
+	font-weight: bold;
+}
+
 nav {
 	.brand-logo {
 		margin-left: 20px;
-		font-weight: bold;
 		font-size: 40px;
-		color: $yellow-theme;
+		@include yellow_bold();
 	}
 
 	ul {
 		li {
 			a {
 				font-size: 17px;
+
+				&:hover {
+					@include yellow_bold()
+				}
 			}
 		}
 
