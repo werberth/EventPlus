@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load widget_tweaks %}
 
 {% block content %}
@@ -65,18 +66,7 @@
 			</div>
 
 
-			{% if form.errors %}
-	          <div class="container">
-	          	<div class="container col s2 error">
-	            <ul class="red-text">{{ form.non_field_errors }}</ul>
-	            {% for field in form %} 
-	              {% if field.errors %}
-	              <li class="red-text">{{ field.label }}: {{ field.errors|striptags }}</li>
-	              {% endif %}
-	            {% endfor %}
-	          	</div>
-	          </div>
-	        {% endif %}
+			{% include "utils/forms_error.html" %}
 
 			<div class="card-action">
 		        <div class="row card-bottom-margin">
@@ -87,3 +77,7 @@
 	</div>
 </div>
 {% endblock content %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static 'js/modal_script.js' %}"></script>
+{% endblock scripts %}
