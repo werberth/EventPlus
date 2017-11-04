@@ -6,20 +6,20 @@ from .models import Room, Talk
 from .forms import RoomForm, TalkForm
 
 
-class KwargsTalkView(object):
+class KwargsEventView(object):
     def get_form_kwargs(self):
-        kwargs = super(KwargsTalkView, self).get_form_kwargs()
+        kwargs = super(KwargsEventView, self).get_form_kwargs()
         kwargs['event'] = Event.objects.get(pk=self.kwargs['pk'])
         return kwargs
 
 
-class CreateRoomView(generic.CreateView):
+class CreateRoomView(KwargsEventView, generic.CreateView):
     model = Room
     form_class = RoomForm
     template_name = 'talks/crud_room.html'
 
 
-class UpdateRoomView(generic.UpdateView):
+class UpdateRoomView(KwargsEventView, generic.UpdateView):
     model = Room
     form_class = RoomForm
     template_name = 'talks/crud_room.html'
@@ -34,13 +34,13 @@ class DeleteRoomView(generic.DeleteView):
         return self.post(request, *args, **kwargs)
 
 
-class CreateTalkView(KwargsTalkView, generic.CreateView):
+class CreateTalkView(KwargsEventView, generic.CreateView):
     model = Talk
     form_class = TalkForm
     template_name = 'talks/crud_talk.html'
 
 
-class UpdateTalkView(KwargsTalkView, generic.UpdateView):
+class UpdateTalkView(KwargsEventView, generic.UpdateView):
     model = Talk
     form_class = TalkForm
     template_name = 'talks/crud_talk.html'

@@ -9,6 +9,16 @@ class RoomForm(forms.ModelForm):
         model = Room
         fields = '__all__'
 
+    def __init__(self, *args, **kwargs):
+        self.event = kwargs.pop('event')
+        super(RoomForm, self).__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        room = super().save(commit=False)
+        room.event = self.event
+        room.save()
+        return room
+
 
 class TalkForm(forms.ModelForm):
     class Meta:

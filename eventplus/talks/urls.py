@@ -11,7 +11,11 @@ from .views import (
 )
 
 urlpatterns = [
-    url(r'^room/create/$', CreateRoomView.as_view(), name="room_create"),
+    url(
+        r'^room/create/(?P<pk>\d+)/$',
+        CreateRoomView.as_view(),
+        name="room_create"
+    ),
     url(
         r'^room/update/(?P<pk>\d+)/$',
         UpdateRoomView.as_view(),
