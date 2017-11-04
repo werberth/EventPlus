@@ -5,6 +5,13 @@ from .models import Event, Supporters
 from .forms import CreateEventForm, SupporterForm
 
 
+class KwargsEventView(object):
+    def get_form_kwargs(self):
+        kwargs = super(KwargsEventView, self).get_form_kwargs()
+        kwargs['event'] = Event.objects.get(pk=self.kwargs['event'])
+        return kwargs
+
+
 class CreateEventView(generic.CreateView):
     model = Event
     form_class = CreateEventForm

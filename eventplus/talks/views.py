@@ -1,16 +1,9 @@
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy as r
 
-from eventplus.events.models import Event
 from .models import Room, Talk
 from .forms import RoomForm, TalkForm
-
-
-class KwargsEventView(object):
-    def get_form_kwargs(self):
-        kwargs = super(KwargsEventView, self).get_form_kwargs()
-        kwargs['event'] = Event.objects.get(pk=self.kwargs['pk'])
-        return kwargs
+from eventplus.events.views import KwargsEventView
 
 
 class CreateRoomView(KwargsEventView, generic.CreateView):

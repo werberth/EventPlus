@@ -12,12 +12,12 @@ from .views import (
 
 urlpatterns = [
     url(
-        r'^room/create/(?P<pk>\d+)/$',
+        r'^room/create/(?P<event>\d+)/$',
         CreateRoomView.as_view(),
         name="room_create"
     ),
     url(
-        r'^room/update/(?P<pk>\d+)/$',
+        r'^room/update/(?P<event>\d+)/(?P<pk>\d+)/$',
         UpdateRoomView.as_view(),
         name="room_update"
     ),
@@ -26,9 +26,9 @@ urlpatterns = [
         DeleteRoomView.as_view(),
         name="room_delete"
     ),
-    url(r'^create/(?P<pk>\d+)/$', CreateTalkView.as_view(), name="create"),
+    url(r'^create/(?P<event>\d+)/$', CreateTalkView.as_view(), name="create"),
     url(
-        r'^update/(?P<pk>\d+)/$',
+        r'^update/(?P<event>\d+)/(?P<pk>\d+)/$',
         UpdateTalkView.as_view(),
         name="update"
     ),
