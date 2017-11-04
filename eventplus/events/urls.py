@@ -24,12 +24,12 @@ urlpatterns = [
     ),
     url(r'^$', ListEventView.as_view(), name="list"),
     url(
-        r'^supporter/create/$',
+        r'^supporter/create/(?P<event>\d+)/$',
         CreateSupporterView.as_view(),
         name="supporter_create"
     ),
     url(
-        r'^supporter/update/(?P<pk>\d+)/$',
+        r'^supporter/update/(?P<event>\d+)/(?P<pk>\d+)/$',
         UpdateSupporterView.as_view(),
         name="supporter_update"
     ),

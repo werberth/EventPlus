@@ -7,12 +7,6 @@
 	<div class="card">
 			<form method="POST" action="">
 			 {% csrf_token %}
-				<div class= "row">
-					<div class="col s7 offset-s2">
-						<label>{{ form.event.label}}</label>
-						{{ form.event }}
-					</div>
-				</div>
 				<div class="row">
 					<div class="col s7 offset-s2">
 						<label>{{ form.name.label}}</label>

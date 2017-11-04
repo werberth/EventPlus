@@ -5,6 +5,14 @@ from django.contrib.admin import widgets
 from .models import Event, Supporters
 
 
+class FormKwargsEvent(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        self.event = kwargs.pop('event')
+        super(FormKwargsEvent, self).__init__(*args, **kwargs)
+        self.fields['event'].required = False
+
+
 class CreateEventForm(forms.ModelForm):
 
     class Meta:
@@ -22,7 +30,13 @@ class CreateEventForm(forms.ModelForm):
         return data
 
 
-class SupporterForm(forms.ModelForm):
+class SupporterForm(FormKwargsEvent):
     class Meta:
         model = Supporters
         fields = '__all__'
+
+    def save(self):
+        supporter = super().save(commit=False)
+        supporter.event = self.event
+        supporter.save()
+        return supporter

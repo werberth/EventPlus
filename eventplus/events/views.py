@@ -40,13 +40,13 @@ class ListEventView(generic.ListView):
     context_object_name = 'events'
 
 
-class CreateSupporterView(generic.CreateView):
+class CreateSupporterView(KwargsEventView, generic.CreateView):
     model = Supporters
     form_class = SupporterForm
     template_name = 'events/crud_supporter.html'
 
 
-class UpdateSupporterView(generic.UpdateView):
+class UpdateSupporterView(KwargsEventView, generic.UpdateView):
     model = Supporters
     form_class = SupporterForm
     template_name = 'events/crud_supporter.html'
