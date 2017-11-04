@@ -2,17 +2,13 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from .models import Room, Talk
+from eventplus.events.forms import FormKwargsEvent
 
 
-class RoomForm(forms.ModelForm):
+class RoomForm(FormKwargsEvent):
     class Meta:
         model = Room
         fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        self.event = kwargs.pop('event')
-        super(RoomForm, self).__init__(*args, **kwargs)
-        self.fields['event'].required = False
 
     def save(self, commit=True):
         room = super().save(commit=False)
@@ -21,14 +17,10 @@ class RoomForm(forms.ModelForm):
         return room
 
 
-class TalkForm(forms.ModelForm):
+class TalkForm(FormKwargsEvent):
     class Meta:
         model = Talk
-        exclude = ['event']
-
-    def __init__(self, *args, **kwargs):
-        self.event = kwargs.pop('event')
-        super(TalkForm, self).__init__(*args, **kwargs)
+        fields = '__all__'
 
     def clean(self):
         cleaned_data = super(TalkForm, self).clean()
@@ -46,11 +38,25 @@ class TalkForm(forms.ModelForm):
                     room=room
                 )
             ).exists():
-                raise forms.ValidationError(
-                    _("Já existe uma palestra nesse horario, verfique a lista\
+                error_message = _(
+                    "Já existe uma palestra nesse horario, verfique a lista\
                     de palestras para saber quais horarios já extão reservados\
-                    e tente novamente")
+                    e tente novamente"
                 )
+                if hasattr(self, 'instance'):
+                    talk_search = Talk.objects.get(
+                        start_at__gte=initial,
+                        end__lte=end,
+                        date=day,
+                        room=room
+                    )
+                    print(self.instance)
+                    print(talk_search)
+                    print(talk_search.pk != self.instance.pk)
+                    if (talk_search.pk != self.instance.pk):
+                        raise forms.ValidationError(error_message)
+                else:
+                    raise forms.ValidationError(error_message)
 
             return super(TalkForm, self).clean()
         else:
