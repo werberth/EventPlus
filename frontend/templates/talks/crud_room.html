@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
 <div class="container">
 	<div class="col s8">
-		<div class="card">
+		<div class="card" id="card-room">
 			<form method="POST" action="">
 			{% csrf_token %}
 					<div class= "row">
@@ -13,23 +14,7 @@
 						</div>
 					</div>
 
-					<div class= "row">
-						<div class="col s6 offset-s3">	
-							<label>{{ form.event.label}}</label>
-							{{ form.event }}
-						</div>
-					</div>
-
-				{% if form.errors %}
-		          <div>
-		            <ul>{{ form.non_field_errors }}</ul>
-		            {% for field in form %} 
-		              {% if field.errors %}
-		              <li>{{ field.label }}: {{ field.errors|striptags }}</li>
-		              {% endif %}
-		            {% endfor %}
-		          </div>
-		        {% endif %}
+				{% include "utils/forms_error.html" %}
 
 		        <div class="card-action">
 		        	<div class="row card-bottom-margin">
@@ -41,3 +26,7 @@
 	</div>
 </div>
 {% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static 'js/modal_script.js' %}"></script>
+{% endblock scripts %}
