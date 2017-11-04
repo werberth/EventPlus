@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy as r
 
@@ -8,7 +9,7 @@ from .forms import CreateEventForm, SupporterForm
 class KwargsEventView(object):
     def get_form_kwargs(self):
         kwargs = super(KwargsEventView, self).get_form_kwargs()
-        kwargs['event'] = Event.objects.get(pk=self.kwargs['event'])
+        kwargs['event'] = get_object_or_404(Event, pk=self.kwargs['event'])
         return kwargs
 
 
