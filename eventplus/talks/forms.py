@@ -12,6 +12,7 @@ class RoomForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.event = kwargs.pop('event')
         super(RoomForm, self).__init__(*args, **kwargs)
+        self.fields['event'].required = False
 
     def save(self, commit=True):
         room = super().save(commit=False)
