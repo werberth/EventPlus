@@ -50,9 +50,6 @@ class TalkForm(FormKwargsEvent):
                         date=day,
                         room=room
                     )
-                    print(self.instance)
-                    print(talk_search)
-                    print(talk_search.pk != self.instance.pk)
                     if (talk_search.pk != self.instance.pk):
                         raise forms.ValidationError(error_message)
                 else:
@@ -65,6 +62,28 @@ class TalkForm(FormKwargsEvent):
                 Verfique se o horário de inicio da Palestra é anterior\
                 ao horário de termino e vice-versa.")
             )
+
+    def clean_talk_title(self):
+        data = self.cleaned_data['talk_title']
+        if Talk.objects.filter(
+            talk_title=data,
+            event=self.event
+        ):
+            error_message = _(
+                "Sorry, there is already a Talk on this Event\
+                with this title, please insert another title and\
+                try again."
+            )
+            if hasattr(self, 'instance'):
+                talk_search = Talk.objects.get(
+                    talk_title=data,
+                    event=self.event
+                )
+                if (talk_search.pk != self.instance.pk):
+                    raise forms.ValidationError(error_message)
+            else:
+                raise forms.ValidationError(error_message)
+        return data
 
     def clean_date(self):
         data = self.cleaned_data['date']
