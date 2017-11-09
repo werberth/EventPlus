@@ -32,7 +32,7 @@
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             {% if user.is_authenticated %}
                 <li><a href="{% url 'events:list' %}">Todos os Eventos</a></li>
-                <li><a href="#">Meus Eventos</a></li>
+                <li><a href="{% url 'events:myevents' %}">Meus Eventos</a></li>
                 <li><a  class="dropdown-button" data-beloworigin="true" data-activates="dropdown" href="#">
                     Logout <i class="material-icons right">arrow_drop_down</i></a></li>
                 <ul id="dropdown" class="dropdown-content">
