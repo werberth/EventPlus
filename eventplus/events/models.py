@@ -1,9 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from django.template.defaultfilters import slugify
 
 
 class Event(models.Model):
+    user = models.ForeignKey(
+        User,
+        related_name='events',
+        verbose_name=_('Usuário')
+    )
     name = models.CharField(_("Name"), max_length=155)
     slug = models.SlugField(_("Slug"), unique=True, blank=True)
     address = models.CharField(max_length=300)
