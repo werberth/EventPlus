@@ -1,0 +1,24 @@
+@mixin font-event-style() {
+	color: $blue-theme;
+	font-weight: bold;	
+}
+
+.events {
+	#title {
+		@include font-event-style();
+	}
+
+	.information{
+		margin-top: 1.5em;
+
+		.item {
+			font-size: 18px;
+
+			span {
+				font-weight: bold;
+			}
+		}
+	}
+
+	margin-bottom: 2.5em;
+}

@@ -64,6 +64,15 @@ class MyEventsView(generic.ListView):
         return queryset
 
 
+class EventView(generic.TemplateView):
+    template_name = 'events/event.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs = super(EventView, self).get_context_data(**kwargs)
+        kwargs['event'] = get_object_or_404(Event, slug=kwargs['slug'])
+        return kwargs
+
+
 class CreateSupporterView(KwargsEventView, generic.CreateView):
     model = Supporters
     form_class = SupporterForm

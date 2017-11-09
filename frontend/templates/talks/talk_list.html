@@ -1,5 +1,3 @@
-{% extends "base.html" %}
-
 {% block content %}
 	<div class="container">
 			<div class="row">					
@@ -15,26 +13,20 @@
 					    <div class="modal-content">
 					      <h4>{{ talk.talk_title }} - por {{ talk.speaker_name }}</h4>
 					      <img src="{{ talk.speaker_photo }}" class="circle right">
-					      <p>Talk Description: {{ talk.talk_description }}</p>
-					      <p>Speaker Description: {{ talk.speaker_description }}</p>
-					      <p>Sala: {{ talk.room }} </p>
-					      <p>Horario: {{ talk.start_at|time:"H:i" }} às {{ talk.end|time:"H:i" }}</p>
+					      <p><span>Talk Description:</span> {{ talk.talk_description }}</p>
+					      <p><span>Speaker Description:</span> {{ talk.speaker_description }}</p>
+					      <p><span>Sala:</span> {{ talk.room }} </p>
+					      <p><span>Horario:</span> {{ talk.start_at|time:"H:i" }} às {{ talk.end|time:"H:i" }}</p>
 					    </div>
 					    <div class="modal-footer">
 					      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
 					    </div>
 					</div>
+
+					{% empty %}
+						<h5>Esse Evento não possui talks</h5>
 				    {% endfor %}
 				</ul>
 			</div>
 		</div>
 {% endblock content %}
-
-{% block scripts %}
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.modal').modal();
-  });
-         
-</script>
-{% endblock scripts %}
