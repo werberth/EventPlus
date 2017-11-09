@@ -52,6 +52,18 @@ class ListEventView(generic.ListView):
     context_object_name = 'events'
 
 
+class MyEventsView(generic.ListView):
+    model = Event
+    template_name = 'events/my_events.html'
+    context_object_name = 'events'
+
+    def get_queryset(self):
+        queryset = Event.objects.filter(
+            user=self.request.user
+        ).order_by('-start_date')
+        return queryset
+
+
 class CreateSupporterView(KwargsEventView, generic.CreateView):
     model = Supporters
     form_class = SupporterForm

@@ -20,6 +20,12 @@
 		}
 	}
 
+	#btn-event-create {
+		float: right;
+		inline: block;
+		margin-bottom: 1em;
+	}
+
 	.modal {
 		&:not(img){
 			float: left;

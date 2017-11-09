@@ -7,7 +7,8 @@ from .views import (
     ListEventView,
     CreateSupporterView,
     UpdateSupporterView,
-    DeleteSupporterView
+    DeleteSupporterView,
+    MyEventsView
 )
 
 urlpatterns = [
@@ -23,6 +24,7 @@ urlpatterns = [
         name="delete"
     ),
     url(r'^$', ListEventView.as_view(), name="list"),
+    url(r'^my-events/$', MyEventsView.as_view(), name="myevents"),
     url(
         r'^supporter/create/(?P<event>\d+)/$',
         CreateSupporterView.as_view(),
