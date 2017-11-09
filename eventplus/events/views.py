@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy as r
@@ -35,7 +36,11 @@ class DeleteEventView(generic.DeleteView):
 
 class ListEventView(generic.ListView):
     model = Event
-    queryset = Event.objects.all()
+
+    queryset = Event.objects.filter(
+        end_date__gte=datetime.today()
+    ).order_by('-start_date')
+
     template_name = 'events/list_events.html'
     context_object_name = 'events'
 
