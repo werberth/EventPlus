@@ -13,7 +13,14 @@ class FormKwargsEvent(forms.ModelForm):
         self.fields['event'].required = False
 
 
-class CreateEventForm(forms.ModelForm):
+class FormKwargsUser(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        super(FormKwargsUser, self).__init__(*args, **kwargs)
+        self.fields['user'].required = False
+
+
+class CreateEventForm(FormKwargsUser):
 
     class Meta:
         model = Event
@@ -28,6 +35,13 @@ class CreateEventForm(forms.ModelForm):
                     neighborhood and house number, separated by commas.')
             )
         return data
+
+    def save(self, commit=True):
+        event = super(CreateEventForm, self).save(commit=False)
+        event.user = self.user
+        if commit:
+            event.save()
+        return event
 
 
 class SupporterForm(FormKwargsEvent):

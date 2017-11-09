@@ -14,13 +14,20 @@ class KwargsEventView(object):
         return kwargs
 
 
-class CreateEventView(generic.CreateView):
+class KwargsUserView(object):
+    def get_form_kwargs(self):
+        kwargs = super(KwargsUserView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+
+class CreateEventView(KwargsUserView, generic.CreateView):
     model = Event
     form_class = CreateEventForm
     template_name = 'events/crud_event.html'
 
 
-class UpdateEventView(generic.UpdateView):
+class UpdateEventView(KwargsUserView, generic.UpdateView):
     model = Event
     form_class = CreateEventForm
     template_name = 'events/create_event.html'
