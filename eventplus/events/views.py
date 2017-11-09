@@ -3,8 +3,11 @@ from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy as r
 
+from eventplus.talks.models import Talk
+
 from .models import Event, Supporters
 from .forms import CreateEventForm, SupporterForm
+
 
 
 class KwargsEventView(object):
@@ -70,6 +73,8 @@ class EventView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         kwargs = super(EventView, self).get_context_data(**kwargs)
         kwargs['event'] = get_object_or_404(Event, slug=kwargs['slug'])
+        talks = Talk.objects.filter(event=kwargs['event'])
+        kwargs['talks'] = sorted(talks, key=lambda x: x.start_at and x.date)
         return kwargs
 
 
