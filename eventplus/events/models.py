@@ -40,7 +40,6 @@ class Supporters(models.Model):
     )
 
     name = models.CharField(max_length=155)
-    image_logo = models.URLField(_('Logo'))
     types = models.CharField(
         max_length=155,
         choices=TYPE_CHOICES
