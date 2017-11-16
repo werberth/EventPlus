@@ -39,7 +39,8 @@ class Supporters(models.Model):
         verbose_name=_('Event')
     )
 
-    name = models.CharField(max_length=155)
+    name = models.CharField(_('Name'), max_length=155)
+    website = models.URLField(_('WebSite'))
     types = models.CharField(
         max_length=155,
         choices=TYPE_CHOICES
