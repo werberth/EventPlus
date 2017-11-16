@@ -7,7 +7,7 @@
 		    	{% for talk in talks %}
 			    <li class="collection-item">
 			      <span><a class="modal-trigger" href="#talk_{{ talk.pk }}">{{ talk.talk_title }} - por {{ talk.speaker_name }}</a></span><br>
-			      <span>Dia {{ talk.date|date:'d/m/Y' }}, de {{ talk.start_at|time:"H:i" }} até às {{ talk.end|time:"H:i" }}</span>
+			      <span>Dia {{ talk.date|date:'d/m/Y' }}, de {{ talk.start_at|time:"H:i" }} até às {{ talk.end|time:"H:i" }} - Sala: {{ talk.room }}</span>
 			    </li>
 
 			    <div id="talk_{{ talk.pk }}" class="modal">
