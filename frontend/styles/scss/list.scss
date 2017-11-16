@@ -4,6 +4,17 @@
 }
 
 
+.list-supporters {
+	a {
+		font-weight: bold;
+		color: black;	
+	}
+
+	a:hover {
+		color: $blue-theme;
+	}
+}
+
 .list {
 	h4 {
 		@include font-list-style();	
