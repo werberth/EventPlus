@@ -1,9 +1,7 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy as r
-
-from eventplus.talks.models import Talk
 
 from .models import Event, Supporters
 from .forms import CreateEventForm, SupporterForm
@@ -71,25 +69,36 @@ class EventView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(EventView, self).get_context_data(**kwargs)
-        context['event'] = get_object_or_404(Event, slug=kwargs['slug'])
-        talks = Talk.objects.filter(event=context['event'])
-        context['talks'] = sorted(talks, key=lambda x: x.start_at and x.date)
+        event = get_object_or_404(Event, slug=kwargs['slug'])
+        context['event'] = event
+        talks = self.select_talks_by_day(event)
+        print(talks)
+        context['all_talks'] = talks
         context['sponsors'] = Supporters.objects.filter(
             event=context['event'],
             types="sponsors"
         )
-        print(context['sponsors'])
         context['promoters'] = Supporters.objects.filter(
             event=context['event'],
             types="promoters"
         )
-        print(context['promoters'])
         context['organizers'] = Supporters.objects.filter(
             event=context['event'],
             types="organizers"
         )
-        print(context['organizers'])
         return context
+
+    def select_talks_by_day(self, event):
+        start = event.start_date
+        end = event.end_date
+        date = start
+        talks_dict = {}
+        while date <= end:
+            talks = event.talks.filter(date=date)
+            talks_sort = sorted(talks, key=lambda x: x.start_at and x.date)
+            talks_dict[str(date)] = talks_sort
+            date += timedelta(days=1)
+        return talks_dict
 
 
 class CreateSupporterView(KwargsEventView, generic.CreateView):
