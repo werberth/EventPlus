@@ -20,7 +20,7 @@ class Room(models.Model):
 class Talk(models.Model):
     event = models.ForeignKey(
         Event,
-        related_name='event',
+        related_name='talks',
         verbose_name=_('Events'),
     )
     talk_title = models.CharField(_('Talk Title'), max_length=255)
