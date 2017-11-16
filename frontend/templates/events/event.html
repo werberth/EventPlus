@@ -3,6 +3,28 @@
 {% load widget_tweaks %}
 
 {% block content %}
+	
+	{% if request.user == event.user %}
+	<div class="container edit-buttons">
+		<div class="row">
+			<h4 id="title">
+				Menu de Edição
+			</h4>
+			<div class="buttons">
+				<div id="buttons1">
+					<a class="waves-effect waves-light btn">Criar Room</a>
+					<a class="waves-effect waves-light btn">Criar Talk</a>
+					<a class="waves-effect waves-light btn">Editar Evento</a>
+				</div>
+				<div id="buttons2">
+					<a class="waves-effect waves-light btn">Adicionar Supporter</a>
+					<a class="waves-effect waves-light btn">Criar Intervalo</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+
 	<div class="container events">
 		<h4 id="title">{{ event.name }}</h4>
 		<li class="divider"></li>

@@ -22,3 +22,46 @@
 
 	margin-bottom: 2.5em;
 }
+
+.edit-buttons {
+	#title {
+		border-bottom: 1px solid #dedede;
+		@include font-event-style();
+	}
+
+	.buttons {
+		margin-left: 10em;
+	}
+
+	#buttons1 {
+		margin-left: 4em;
+		margin-bottom: 10px;;
+		a {
+			width: 180px;
+		}
+		
+	}
+
+	#buttons2 {
+		margin-left: 6em;
+		margin-bottom: 10px;;
+		a {
+			width: 250px;
+		}
+		
+	}
+
+	a {
+		font-weight: bold;
+		background-color: #e65100;	
+		
+		&:hover {
+			background-color: #f57c00;	
+		}
+	}
+
+
+	margin-top: 2.5em;
+	margin-bottom: 4em;
+	
+}
