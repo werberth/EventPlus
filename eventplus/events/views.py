@@ -9,7 +9,6 @@ from .models import Event, Supporters
 from .forms import CreateEventForm, SupporterForm
 
 
-
 class KwargsEventView(object):
     def get_form_kwargs(self):
         kwargs = super(KwargsEventView, self).get_form_kwargs()
@@ -71,11 +70,26 @@ class EventView(generic.TemplateView):
     template_name = 'events/event.html'
 
     def get_context_data(self, **kwargs):
-        kwargs = super(EventView, self).get_context_data(**kwargs)
-        kwargs['event'] = get_object_or_404(Event, slug=kwargs['slug'])
-        talks = Talk.objects.filter(event=kwargs['event'])
-        kwargs['talks'] = sorted(talks, key=lambda x: x.start_at and x.date)
-        return kwargs
+        context = super(EventView, self).get_context_data(**kwargs)
+        context['event'] = get_object_or_404(Event, slug=kwargs['slug'])
+        talks = Talk.objects.filter(event=context['event'])
+        context['talks'] = sorted(talks, key=lambda x: x.start_at and x.date)
+        context['sponsors'] = Supporters.objects.filter(
+            event=context['event'],
+            types="sponsors"
+        )
+        print(context['sponsors'])
+        context['promoters'] = Supporters.objects.filter(
+            event=context['event'],
+            types="promoters"
+        )
+        print(context['promoters'])
+        context['organizers'] = Supporters.objects.filter(
+            event=context['event'],
+            types="organizers"
+        )
+        print(context['organizers'])
+        return context
 
 
 class CreateSupporterView(KwargsEventView, generic.CreateView):
