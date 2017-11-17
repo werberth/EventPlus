@@ -14,6 +14,7 @@
 	    	{% for supporter in supporters %}	
 		    <li class="collection-item">
 		      	<a href="{{ supporter.website }}">{{  supporter.name }}</a>
+		      	{% if request.user == event.user %}
 		      	<a class="secondary-content" 
 			      	href="{% url 'events:supporter_update' event=supporter.event.pk pk=supporter.pk %}">
 			      	<i class="material-icons edit-icons">edit</i>
@@ -23,6 +24,7 @@
 			      	href="{% url 'events:supporter_delete' event=supporter.event.slug pk=supporter.pk %}">
 			      	<i class="material-icons edit-icons">delete</i>
 			    </a>
+			    {% endif %}
 		    </li>
 
 		    {% empty %}

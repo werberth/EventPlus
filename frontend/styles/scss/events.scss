@@ -3,9 +3,32 @@
 	font-weight: bold;	
 }
 
+@mixin button-edit(){
+	span {
+		a {
+			float: right;
+			margin-left: 5px;
+		}
+	}
+}
+
+@mixin button-color(){
+	a {
+		font-weight: bold;
+		background-color: #e65100;	
+		
+		&:hover {
+			background-color: #f57c00;	
+		}
+	}
+}
+
+
 .events {
 	#title {
 		@include font-event-style();
+		@include button-edit();
+		@include button-color();
 	}
 
 	.information{
@@ -29,12 +52,7 @@
 		@include font-event-style();
 		padding-bottom: 15px;
 
-		span {
-			a {
-				float: right;
-				margin-left: 5px;
-			}
-		}
+		@include button-edit();
 	}
 
 	.buttons {
@@ -59,14 +77,7 @@
 		
 	}
 
-	a {
-		font-weight: bold;
-		background-color: #e65100;	
-		
-		&:hover {
-			background-color: #f57c00;	
-		}
-	}
+	@include button-color();
 
 
 	margin-top: 2.5em;

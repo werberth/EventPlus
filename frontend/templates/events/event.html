@@ -9,17 +9,26 @@
 		<div class="row">
 			<h4 id="title">
 				Menu de Edição
+				{% if request.user == event.user %}
 				<span>
 					<a href="{% url 'talks:room_create' event.pk %}" class="waves-effect waves-light btn">Salas</a>
 					<a href="{% url 'talks:create' event.pk %}" class="waves-effect waves-light btn">Criar Intervalo</a>
 				</span>
+				{% endif %}
 			</h4>
 		</div>
 	</div>
 	{% endif %}
 
 	<div class="container events">
-		<h4 id="title">{{ event.name }}</h4>
+		<h4 id="title">
+			{{ event.name }}
+			{% if request.user == event.user %}
+			<span>
+				<a href="{% url 'events:update' slug=event.slug %}" class="waves-effect waves-light btn">Editar</a>
+			</span>
+			{% endif %}
+		</h4>
 		<li class="divider"></li>
 		<div class="information">
 			<div class="item">
