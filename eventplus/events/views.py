@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy as r
@@ -26,6 +27,15 @@ class CreateEventView(KwargsUserView, generic.CreateView):
     form_class = CreateEventForm
     template_name = 'events/crud_event.html'
 
+    def form_valid(self, form):
+        event = form.save()
+        url = r(
+            'events:event',
+            kwargs={
+                'slug': event.slug
+            }
+        )
+        return HttpResponseRedirect(url)
 
 class UpdateEventView(KwargsUserView, generic.UpdateView):
     model = Event
