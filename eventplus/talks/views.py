@@ -2,7 +2,7 @@ from django.views import generic
 from django.core.urlresolvers import reverse_lazy as r
 
 from .models import Room, Talk
-from .forms import RoomForm, TalkForm
+from .forms import RoomForm, TalkForm, IntervalForm
 from eventplus.events.views import KwargsEventView
 
 
@@ -31,6 +31,12 @@ class CreateTalkView(KwargsEventView, generic.CreateView):
     model = Talk
     form_class = TalkForm
     template_name = 'talks/crud_talk.html'
+
+
+class CreateIntervalView(KwargsEventView, generic.CreateView):
+    model = Talk
+    form_class = IntervalForm
+    template_name = 'talks/crud_interval.html'
 
 
 class UpdateTalkView(KwargsEventView, generic.UpdateView):
