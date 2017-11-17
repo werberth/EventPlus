@@ -7,7 +7,7 @@
 		            <li class="collection-header"><h4>Event List</h4></li>
 			        {% for event in events %}
 						    <li class="collection-item">
-						      <span><a href="{% url 'events:event' slug=event.slug %}">{{ event.name }} - {{ event.state }}, {{ event.city }}</a></span><br>
+						      <span class="list-item-title"><a href="{% url 'events:event' slug=event.slug %}">{{ event.name }} - {{ event.state }}, {{ event.city }}</a></span><br>
 						      <span>De {{ event.start_date|date:'d/m/Y' }} a {{ event.end_date|date:'d/m/Y'}}</span>
 						    </li>
 					{% empty %}

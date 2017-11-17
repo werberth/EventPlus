@@ -46,23 +46,37 @@
 	
 }
 
-.button-create-talk {
-	float: right;
-	font-weight: bold;
-	inline: block;
-	margin-top: -3em;
-}
-
 .list {
 	h4 {
 		@include font-list-style();	
+		
+		span {
+			.button-create-talk {
+				float: right;
+				font-weight: bold;
+				inline: block;
+				color: white;
+				font-size: 15px;
+			}
+		}
 	}
+
+	.list-item-title {
+		a {
+			&:visited {
+				color: lighten($blue-theme, 5%);
+			}
+			&:hover {
+				color: lighten($blue-theme, 15%);	
+			}
+		}
+	}	
+
+	
 	span {
 		&:first-child {	
-			a {
-				@include font-list-style();
-				font-size: 20px;
-			}
+			@include font-list-style();
+			font-size: 20px;
 		}
 		&:last-child{
 			font-size: 15px;
@@ -93,7 +107,7 @@
 
 		.modal-footer {
 			margin-top: 2em;
-		}
+			}
 	}
 
 	.modal-trigger{

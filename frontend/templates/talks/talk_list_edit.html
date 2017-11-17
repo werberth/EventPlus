@@ -1,19 +1,25 @@
 <div class="container">
 	<div class="row">					
 	    <ul class="collection with-header list">
-            <li class="collection-header"><h4>Talk List</h4></li>
+            <li class="collection-header">
+            	<h4>
+            		Talk List
+            		<span><a class="button-create-talk waves-effect waves-light btn blue" href="{% url 'talks:create' event.pk %}">Adicionar Talk</a></span>
+            	</h4>
+            </li>
         	{% for talks in all_talks %}	
         	<li class="collection-header"><h5>{{ forloop.counter }}º Dia</h></li>
 		    	{% for talk in talks %}
 			    <li class="collection-item">
 
-			      <span><a>{{ talk.talk_title }} 
+			      <span class="list-item-title">
+			      {{ talk.talk_title }} 
                   {% if not talk.is_interval %}
                     - por {{ talk.speaker_name }}
                   {% endif %}                      
-                  </a></span><br>
+                  </span><br>
 
-			      <span>Dia {{ talk.date|date:'d/m/Y' }}, de {{ talk.start_at|time:"H:i" }} até às {{ talk.end|time:"H:i" }}
+			      <span class="list-item-date">Dia {{ talk.date|date:'d/m/Y' }}, de {{ talk.start_at|time:"H:i" }} até às {{ talk.end|time:"H:i" }}
                   {% if not talk.is_interval %}  
                     - Sala: {{ talk.room }}
                   {% endif %}
@@ -64,7 +70,6 @@
 				{% empty %}
 					<li class="collection-item">
 						<p>Esse evento não possui ainda nenhuma Talk cadastradada para esse dia na plataforma.</p>
-							<span><a class="button-create-talk waves-effect waves-light btn blue" href="{% url 'talks:create' event.pk %}">Adicionar uma Talk</a></span>
 					</li>
 			    {% endfor %}
 			{% endfor %}
