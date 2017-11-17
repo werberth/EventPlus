@@ -70,35 +70,29 @@ class EventView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super(EventView, self).get_context_data(**kwargs)
         event = get_object_or_404(Event, slug=kwargs['slug'])
-        context['event'] = event
         talks = self.select_talks_by_day(event)
-        print(talks)
         context['all_talks'] = talks
-        context['sponsors'] = Supporters.objects.filter(
-            event=context['event'],
+        print(talks)
+        context['sponsors'] = event.supporters.filter(
             types="sponsors"
         )
-        context['promoters'] = Supporters.objects.filter(
-            event=context['event'],
+        context['promoters'] = event.supporters.filter(
             types="promoters"
         )
-        context['organizers'] = Supporters.objects.filter(
-            event=context['event'],
+        context['organizers'] = event.supporters.filter(
             types="organizers"
         )
+        context['event'] = event
         return context
 
     def select_talks_by_day(self, event):
-        start = event.start_date
-        end = event.end_date
-        date = start
-        talks_dict = {}
-        while date <= end:
-            talks = event.talks.filter(date=date)
-            talks_sort = sorted(talks, key=lambda x: x.start_at and x.date)
-            talks_dict[str(date)] = talks_sort
+        date = event.start_date
+        talks_list = []
+        while date <= event.end_date:
+            talks = event.talks.filter(date=date).order_by('start_at')
+            talks_list.append(talks)
             date += timedelta(days=1)
-        return talks_dict
+        return talks_list
 
 
 class CreateSupporterView(KwargsEventView, generic.CreateView):

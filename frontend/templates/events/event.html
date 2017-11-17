@@ -12,13 +12,11 @@
 			</h4>
 			<div class="buttons">
 				<div id="buttons1">
-					<a class="waves-effect waves-light btn">Criar Room</a>
-					<a class="waves-effect waves-light btn">Criar Talk</a>
-					<a class="waves-effect waves-light btn">Editar Evento</a>
+					<a href="{% url 'talks:room_create' event.pk %}" class="waves-effect waves-light btn">Criar Room</a>
+					<a href="{% url 'talks:create' event.pk %}" class="waves-effect waves-light btn">Criar Talk</a>
 				</div>
 				<div id="buttons2">
-					<a class="waves-effect waves-light btn">Adicionar Supporter</a>
-					<a class="waves-effect waves-light btn">Criar Intervalo</a>
+					<a href="{% url 'events:supporter_create' event.pk %}" class="waves-effect waves-light btn">Adicionar Supporter</a>
 				</div>
 			</div>
 		</div>

@@ -2,7 +2,7 @@
 	<div class="row">					
 	    <ul class="collection with-header list">
             <li class="collection-header"><h4>Talk List</h4></li>
-        	{% for date, talks in all_talks.items %}	
+        	{% for talks in all_talks %}	
         	<li class="collection-header"><h5>{{ forloop.counter }}º Dia</h></li>
 		    	{% for talk in talks %}
 			    <li class="collection-item">
