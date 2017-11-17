@@ -62,9 +62,14 @@ class ListRoomView(KwargsEventView, generic.ListView):
     context_object_name = 'rooms'
 
     def get_queryset(self):
-        event = get_object_or_404(Event, pk=self.kwargs['event'])
-        queryset = event.rooms.all()
+        self.event = get_object_or_404(Event, pk=self.kwargs['event'])
+        queryset = self.event.rooms.all()
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(ListRoomView, self).get_context_data(**kwargs)
+        context['event'] = self.event
+        return context
 
 
 class ListTalkView(generic.ListView):

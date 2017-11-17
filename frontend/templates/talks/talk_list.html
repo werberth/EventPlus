@@ -67,7 +67,7 @@
 					<li class="collection-item">
 						<p>Esse evento não possui ainda nenhuma Talk cadastradada na plataforma</p>
 						{% if request.user == event.user %}
-							<span id="btn-event-create"><a class="waves-effect waves-light btn blue" href="{% url 'talks:create' event.pk %}">Adicionar uma Talk</a></span>
+							<span><a class="button-create-talk waves-effect waves-light btn blue" href="{% url 'talks:create' event.pk %}">Adicionar uma Talk</a></span>
 						{% endif %}
 					</li>
 
