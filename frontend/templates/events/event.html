@@ -53,11 +53,15 @@
 
 	
 	<div class="supporters">
-		{% include 'events/utils/supporter_list.html' with title="Sponsors" event=event supporters=sponsors %}
-
-		{% include 'events/utils/supporter_list.html' with title="Organizers" event=event supporters=organizerss %}
-
-		{% include 'events/utils/supporter_list.html' with title="Promoters" event=event supporters=promoters %}
+		{% if request.user == event.user %}
+			{% include 'events/utils/supporter_list_edit.html' with title="Sponsors" event=event supporters=sponsors %}
+			{% include 'events/utils/supporter_list_edit.html' with title="Organizers" event=event supporters=organizerss %}
+			{% include 'events/utils/supporter_list_edit.html' with title="Promoters" event=event supporters=promoters %}
+		{% else %}
+			{% include 'events/utils/supporter_list.html' with title="Sponsors" event=event supporters=sponsors %}
+			{% include 'events/utils/supporter_list.html' with title="Organizers" event=event supporters=organizerss %}
+			{% include 'events/utils/supporter_list.html' with title="Promoters" event=event supporters=promoters %}
+		{% endif %}
 	</div>
 
 

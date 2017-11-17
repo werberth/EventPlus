@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">					
+	    <ul class="collection with-header list list-supporters">
+	        <li class="collection-header">
+	        	<h4>
+	        		{{ title }}
+		        	<a class="supporter-button waves-effect waves-light btn blue" 
+		        		href="{% url 'events:supporter_create' event.pk %}">
+		        			Adicionar Supporter
+		        	</a>
+	        	</h4></li>
+	    	{% for supporter in supporters %}	
+		    <li class="collection-item">
+		      	<a href="{{ supporter.website }}">{{  supporter.name }}</a>
+		      	<a class="secondary-content" 
+			      	href="{% url 'events:supporter_update' event=supporter.event.pk pk=supporter.pk %}">
+			      	<i class="material-icons edit-icons">edit</i>
+			    </a>
+			      
+			    <a class="secondary-content" 
+			      	href="{% url 'events:supporter_delete' event=supporter.event.slug pk=supporter.pk %}">
+			      	<i class="material-icons edit-icons">delete</i>
+			    </a>
+		    </li>
+
+		    {% empty %}
+		    	<li class="collection-item"><p>Esse evento ainda não possui nenhum {{ title }}</p></li>
+		    {% endfor %}
+		</ul>
+	</div>
+</div>
