@@ -21,7 +21,7 @@
 
 			      <a class="secondary-content modal-trigger" href="#talk_{{ talk.pk }}"><i class="material-icons edit-icons">add_box</i></a>
 			      
-			      <a class="secondary-content modal-trigger" 
+			      <a class="secondary-content" 
 			      {% if not talk.is_interval %}
 			      	href="{% url 'talks:update' event=talk.event.pk pk=talk.pk %}"
 			      {% else %}
@@ -30,7 +30,7 @@
 			      	<i class="material-icons edit-icons">edit</i>
 			      </a>
 			      
-			      <a class="secondary-content modal-trigger" 
+			      <a class="secondary-content" 
 			      {% if not talk.is_interval %}
 			      	href="{% url 'talks:delete' event_slug=talk.event.slug pk=talk.pk %}"
 			      {% else %}

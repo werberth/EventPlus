@@ -10,12 +10,12 @@
 					     	<h5>
 					     		{{ room.name }}
 
-					     		<a class="secondary-content modal-trigger" 
+					     		<a class="secondary-content" 
 							      	href="{% url 'talks:room_update' event=room.event.pk pk=room.pk %}">
 							      	<i class="material-icons edit-icons">edit</i>
 							    </a>
 							      
-							    <a class="secondary-content modal-trigger" 
+							    <a class="secondary-content" 
 							      	href="{% url 'talks:room_delete' event=room.event.pk pk=room.pk %}">
 							      	<i class="material-icons edit-icons">delete</i>
 							    </a>
