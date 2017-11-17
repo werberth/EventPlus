@@ -111,5 +111,14 @@ class DeleteSupporterView(generic.DeleteView):
     model = Supporters
     success_url = r('events:supporter_create')
 
+    def get_success_url(self):
+        url = r(
+            'events:event',
+            kwargs={
+                'slug': self.kwargs['event']
+            }
+        )
+        return url
+
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)

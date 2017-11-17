@@ -9,17 +9,11 @@
 		<div class="row">
 			<h4 id="title">
 				Menu de Edição
-			</h4>
-			<div class="col offset-s2 buttons">
-				<div id="buttons1">
+				<span>
 					<a href="{% url 'talks:room_create' event.pk %}" class="waves-effect waves-light btn">Salas</a>
-					<a href="{% url 'talks:create' event.pk %}" class="waves-effect waves-light btn">Criar Talk</a>
-				</div>
-				<div id="buttons2">
 					<a href="{% url 'talks:create' event.pk %}" class="waves-effect waves-light btn">Criar Intervalo</a>
-					<a href="{% url 'events:supporter_create' event.pk %}" class="waves-effect waves-light btn">Adicionar Supporter</a>
-				</div>
-			</div>
+				</span>
+			</h4>
 		</div>
 	</div>
 	{% endif %}
@@ -48,80 +42,14 @@
 
 	{% include 'talks/talk_list.html' with event=event talks=talks %}
 
-	{% if sponsors %}
-	<div class="container">
-		<div class="row">					
-		    <ul class="collection with-header list list-supporters">
-	            <li class="collection-header">
-	            	<h4>
-	            		Sponsors
-	            	{% if request.user == event.user %}
-	            	<a class="supporter-button waves-effect waves-light btn blue" 
-	            		href="{% url 'events:supporter_create' event.pk %}">
-	            			Adicionar Supporter
-	            	</a>
-	            	{% endif %}
-	            	</h4></li>
-	        	{% for sponsor in sponsors %}	
-			    <li class="collection-item">
-			      <a href="{{ sponsor.website }}">{{ sponsor.name }}</a>
-			    </li>
-			    {% endfor %}
-			</ul>
-		</div>
-	{% endif %}
-	</div>
+	
+	<div class="supporters">
+		{% include 'events/utils/supporter_list.html' with title="Sponsors" event=event supporters=sponsors %}
 
-	{% if organizers %}
-	<div class="container">
-		<div class="row">					
-		    <ul class="collection with-header list list-supporters">
-	            <li class="collection-header">
-	            	<h4>
-	            		Organizers
-	            		{% if request.user == event.user %}
-			            	<a class="supporter-button waves-effect waves-light btn blue" 
-			            		href="{% url 'events:supporter_create' event.pk %}">
-			            			Adicionar Supporter
-			            	</a>
-		            	{% endif %}
-	            	</h4>
-	            </li>
-	        	{% for organizer in organizers %}	
-			    <li class="collection-item">
-			      <a href="{{ organizer.website }}">{{ organizer.name }}</a>
-			    </li>
-			    {% endfor %}
-			</ul>
-		</div>
-	{% endif %}
-	</div>
+		{% include 'events/utils/supporter_list.html' with title="Organizers" event=event supporters=organizerss %}
 
-	{% if promoters %}
-	<div class="container">
-		<div class="row">					
-		    <ul class="collection with-header list list-supporters">
-	            <li class="collection-header">
-	            	<h4>
-	            		Promoters
-	            		{% if request.user == event.user %}
-			            	<a class="supporter-button waves-effect waves-light btn blue" 
-			            		href="{% url 'events:supporter_create' event.pk %}">
-			            			Adicionar Supporter
-			            	</a>
-		            	{% endif %}
-	            	</h4>
-	            </li>
-	        	{% for promoter in promoters %}	
-			    <li class="collection-item">
-			      <a href="{{ promoter.website }}">{{ promoter.name }}</a>
-			    </li>
-			    {% endfor %}
-			</ul>
-		</div>
-	{% endif %}
+		{% include 'events/utils/supporter_list.html' with title="Promoters" event=event supporters=promoters %}
 	</div>
-
 
 
 {% endblock content %}

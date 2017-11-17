@@ -27,6 +27,14 @@
 	#title {
 		border-bottom: 1px solid #dedede;
 		@include font-event-style();
+		padding-bottom: 15px;
+
+		span {
+			a {
+				float: right;
+				margin-left: 5px;
+			}
+		}
 	}
 
 	.buttons {

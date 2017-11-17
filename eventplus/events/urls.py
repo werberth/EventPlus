@@ -38,7 +38,7 @@ urlpatterns = [
         name="supporter_update"
     ),
     url(
-        r'^supporter/delete/(?P<pk>\d+)/$',
+        r'^supporter/delete/(?P<event>[\w-]+)/(?P<pk>\d+)/$',
         DeleteSupporterView.as_view(),
         name="supporter_delete"
     ),
