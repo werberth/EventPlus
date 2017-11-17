@@ -16,19 +16,17 @@
 
 				<div class="row">
 					<div class="col s7 offset-s2">
-						<label>{{ form.types.label}}</label>
-						{{ form.types }} 
+						<label>{{ form.website.label}}</label>
+						{{ form.website}} 
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col s7 offset-s2">
-						<label>{{ form.image_logo.label}}</label>
-						{% render_field form.image_logo placeholder="URL da image/logo do patrocinador" %}
+						<label>{{ form.types.label}}</label>
+						{{ form.types }} 
 					</div>
 				</div>
-
-
 
 				{% include "utils/forms_error.html" %}
 
