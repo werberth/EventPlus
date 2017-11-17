@@ -30,7 +30,16 @@ class CreateEventView(KwargsUserView, generic.CreateView):
 class UpdateEventView(KwargsUserView, generic.UpdateView):
     model = Event
     form_class = CreateEventForm
-    template_name = 'events/create_event.html'
+    template_name = 'events/crud_event.html'
+
+    def get_success_url(self):
+        url = r(
+            'events:event',
+            kwargs={
+                'slug': self.kwargs['slug']
+            }
+        )
+        return url
 
 
 class DeleteEventView(generic.DeleteView):
