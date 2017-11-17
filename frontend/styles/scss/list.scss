@@ -12,19 +12,7 @@
 	}
 }
 
-
-.list-supporters {
-	a {
-		font-weight: bold;
-		color: black;	
-	}
-
-	a:hover {
-		color: $blue-theme;
-	}
-}
-
-.btn-room-create {
+@mixin header-button(){
 	font-size: 15px;
 	color: white;
 	float: right;
@@ -32,8 +20,35 @@
 	margin-bottom: 1em;
 }
 
+.supporter-button {
+	@include header-button();
+	&:hover {
+		color: white;
+	}
+}
+
+
+.list-supporters {
+	.collection-item {
+		a {
+			font-weight: bold;
+			color: black;	
+		}
+
+		a:hover {
+			color: $blue-theme;
+		}
+	}
+}
+
+.btn-room-create {
+	@include header-button();
+	
+}
+
 .button-create-talk {
 	float: right;
+	font-weight: bold;
 	inline: block;
 	margin-top: -3em;
 }

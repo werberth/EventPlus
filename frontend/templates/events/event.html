@@ -52,7 +52,16 @@
 	<div class="container">
 		<div class="row">					
 		    <ul class="collection with-header list list-supporters">
-	            <li class="collection-header"><h4>Sponsors</h4></li>
+	            <li class="collection-header">
+	            	<h4>
+	            		Sponsors
+	            	{% if request.user == event.user %}
+	            	<a class="supporter-button waves-effect waves-light btn blue" 
+	            		href="{% url 'events:supporter_create' event.pk %}">
+	            			Adicionar Supporter
+	            	</a>
+	            	{% endif %}
+	            	</h4></li>
 	        	{% for sponsor in sponsors %}	
 			    <li class="collection-item">
 			      <a href="{{ sponsor.website }}">{{ sponsor.name }}</a>
@@ -67,7 +76,17 @@
 	<div class="container">
 		<div class="row">					
 		    <ul class="collection with-header list list-supporters">
-	            <li class="collection-header"><h4>Organizers</h4></li>
+	            <li class="collection-header">
+	            	<h4>
+	            		Organizers
+	            		{% if request.user == event.user %}
+			            	<a class="supporter-button waves-effect waves-light btn blue" 
+			            		href="{% url 'events:supporter_create' event.pk %}">
+			            			Adicionar Supporter
+			            	</a>
+		            	{% endif %}
+	            	</h4>
+	            </li>
 	        	{% for organizer in organizers %}	
 			    <li class="collection-item">
 			      <a href="{{ organizer.website }}">{{ organizer.name }}</a>
@@ -82,7 +101,17 @@
 	<div class="container">
 		<div class="row">					
 		    <ul class="collection with-header list list-supporters">
-	            <li class="collection-header"><h4>Promoters</h4></li>
+	            <li class="collection-header">
+	            	<h4>
+	            		Promoters
+	            		{% if request.user == event.user %}
+			            	<a class="supporter-button waves-effect waves-light btn blue" 
+			            		href="{% url 'events:supporter_create' event.pk %}">
+			            			Adicionar Supporter
+			            	</a>
+		            	{% endif %}
+	            	</h4>
+	            </li>
 	        	{% for promoter in promoters %}	
 			    <li class="collection-item">
 			      <a href="{{ promoter.website }}">{{ promoter.name }}</a>
