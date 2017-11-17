@@ -119,11 +119,31 @@ class CreateSupporterView(KwargsEventView, generic.CreateView):
     form_class = SupporterForm
     template_name = 'events/crud_supporter.html'
 
+    def get_success_url(self):
+        event = get_object_or_404(Event, pk=self.kwargs['event'])
+        url = r(
+            'events:event',
+            kwargs={
+                'slug': event.slug
+            }
+        )
+        return url
+
 
 class UpdateSupporterView(KwargsEventView, generic.UpdateView):
     model = Supporters
     form_class = SupporterForm
     template_name = 'events/crud_supporter.html'
+
+    def get_success_url(self):
+        event = get_object_or_404(Event, pk=self.kwargs['event'])
+        url = r(
+            'events:event',
+            kwargs={
+                'slug': event.slug
+            }
+        )
+        return url
 
 
 class DeleteSupporterView(generic.DeleteView):
