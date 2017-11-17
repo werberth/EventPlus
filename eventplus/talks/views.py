@@ -8,6 +8,7 @@ from .forms import RoomForm, TalkForm, IntervalForm
 from eventplus.events.views import KwargsEventView
 from eventplus.events.models import Event
 
+
 class CreateRoomView(KwargsEventView, generic.CreateView):
     model = Room
     form_class = RoomForm
@@ -84,6 +85,16 @@ class CreateTalkView(KwargsEventView, generic.CreateView):
     form_class = TalkForm
     template_name = 'talks/crud_talk.html'
 
+    def get_success_url(self):
+        event = get_object_or_404(Event, pk=self.kwargs['event'])
+        url = r(
+            'events:event',
+            kwargs={
+                'slug': event.slug
+            }
+        )
+        return url
+
 
 class CreateIntervalView(KwargsEventView, generic.CreateView):
     model = Talk
@@ -121,6 +132,16 @@ class UpdateTalkView(KwargsEventView, generic.UpdateView):
     model = Talk
     form_class = TalkForm
     template_name = 'talks/crud_talk.html'
+
+    def get_success_url(self):
+        event = get_object_or_404(Event, pk=self.kwargs['event'])
+        url = r(
+            'events:event',
+            kwargs={
+                'slug': event.slug
+            }
+        )
+        return url
 
 
 class DeleteIntervalView(generic.DeleteView):
