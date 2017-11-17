@@ -10,12 +10,13 @@
 			<h4 id="title">
 				Menu de Edição
 			</h4>
-			<div class="buttons">
+			<div class="col offset-s2 buttons">
 				<div id="buttons1">
-					<a href="{% url 'talks:room_create' event.pk %}" class="waves-effect waves-light btn">Criar Room</a>
+					<a href="{% url 'talks:room_create' event.pk %}" class="waves-effect waves-light btn">Salas</a>
 					<a href="{% url 'talks:create' event.pk %}" class="waves-effect waves-light btn">Criar Talk</a>
 				</div>
 				<div id="buttons2">
+					<a href="{% url 'talks:create' event.pk %}" class="waves-effect waves-light btn">Criar Intervalo</a>
 					<a href="{% url 'events:supporter_create' event.pk %}" class="waves-effect waves-light btn">Adicionar Supporter</a>
 				</div>
 			</div>

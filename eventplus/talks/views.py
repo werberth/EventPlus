@@ -1,21 +1,41 @@
+from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy as r
 
 from .models import Room, Talk
 from .forms import RoomForm, TalkForm, IntervalForm
-from eventplus.events.views import KwargsEventView
 
+from eventplus.events.views import KwargsEventView
+from eventplus.events.models import Event
 
 class CreateRoomView(KwargsEventView, generic.CreateView):
     model = Room
     form_class = RoomForm
     template_name = 'talks/crud_room.html'
 
+    def get_success_url(self):
+        url = r(
+            'talks:rooms',
+            kwargs={
+                'event': self.kwargs['event']
+            }
+        )
+        return url
+
 
 class UpdateRoomView(KwargsEventView, generic.UpdateView):
     model = Room
     form_class = RoomForm
     template_name = 'talks/crud_room.html'
+
+    def get_success_url(self):
+        url = r(
+            'talks:rooms',
+            kwargs={
+                'event': self.kwargs['event']
+            }
+        )
+        return url
 
 
 class DeleteRoomView(generic.DeleteView):
@@ -25,6 +45,33 @@ class DeleteRoomView(generic.DeleteView):
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        url = r(
+            'talks:rooms',
+            kwargs={
+                'event': self.kwargs['event']
+            }
+        )
+        return url
+
+
+class ListRoomView(KwargsEventView, generic.ListView):
+    model = Room
+    template_name = 'talks/list_rooms.html'
+    context_object_name = 'rooms'
+
+    def get_queryset(self):
+        event = get_object_or_404(Event, pk=self.kwargs['event'])
+        queryset = event.rooms.all()
+        return queryset
+
+
+class ListTalkView(generic.ListView):
+    model = Talk
+    queryset = Talk.objects.all()
+    template_name = 'events/list_talks.html'
+    context_object_name = 'talks'
 
 
 class CreateTalkView(KwargsEventView, generic.CreateView):

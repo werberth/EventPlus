@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			    <ul class="collection with-header list">
+		            <li class="collection-header"><h4>Event List</h4></li>
+			        {% for room in rooms %}
+					    <li class="collection-item">
+					     	<h5>
+					     		{{ room.name }}
+
+					     		<a class="secondary-content modal-trigger" 
+							      	href="{% url 'talks:room_update' event=room.event.pk pk=room.pk %}">
+							      	<i class="material-icons edit-icons">edit</i>
+							    </a>
+							      
+							    <a class="secondary-content modal-trigger" 
+							      	href="{% url 'talks:room_delete' event=room.event.pk pk=room.pk %}">
+							      	<i class="material-icons edit-icons">delete</i>
+							    </a>
+
+					     	</h5>
+											   	
+					    </li>
+
+					{% empty %}
+						<li class="collection-item"><h5>Esse evento ainda não possui nenhuma sala</h5></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+{% endblock content %}
