@@ -6,17 +6,21 @@
         	<li class="collection-header"><h5>{{ forloop.counter }}º Dia</h></li>
 		    	{% for talk in talks %}
 			    <li class="collection-item">
+
 			      <span><a>{{ talk.talk_title }} 
                   {% if not talk.is_interval %}
                     - por {{ talk.speaker_name }}
                   {% endif %}                      
                   </a></span><br>
+
 			      <span>Dia {{ talk.date|date:'d/m/Y' }}, de {{ talk.start_at|time:"H:i" }} até às {{ talk.end|time:"H:i" }}
                   {% if not talk.is_interval %}  
                     - Sala: {{ talk.room }}
                   {% endif %}
                   </span>
+
 			      <a class="secondary-content modal-trigger" href="#talk_{{ talk.pk }}"><i class="material-icons edit-icons">add_box</i></a>
+			      
 			      <a class="secondary-content modal-trigger" 
 			      {% if not talk.is_interval %}
 			      	href="{% url 'talks:update' event=talk.event.pk pk=talk.pk %}"
@@ -25,6 +29,7 @@
 			      {% endif %}>
 			      	<i class="material-icons edit-icons">edit</i>
 			      </a>
+			      
 			      <a class="secondary-content modal-trigger" 
 			      {% if not talk.is_interval %}
 			      	href="{% url 'talks:delete' event_slug=talk.event.slug pk=talk.pk %}"
@@ -32,28 +37,40 @@
 			      	href="{% url 'talks:delete_interval' event_slug=talk.event.slug pk=talk.pk %}"
 			      {% endif %}>
 			      <i class="material-icons edit-icons">delete</i></a>
+			    
 			    </li>
 
 			    <div id="talk_{{ talk.pk }}" class="modal">
 				    <div class="modal-content">
 				      <h6>{{ talk.talk_title }} - por {{ talk.speaker_name }}</h6>
+
                     {% if not talk.is_interval %}  
 				      <img src="{{ talk.speaker_photo }}" class="circle right">
                       <p><span>Speaker Description:</span> {{ talk.speaker_description }}</p>
                     {% endif %}
+
 				      <p><span>Talk Description:</span> {{ talk.talk_description }}</p>
+
 				    {% if not talk.is_interval %}    
                       <p><span>Sala:</span> {{ talk.room }} </p>
                     {% endif %}
+				    
 				      <p><span>Horario:</span> {{ talk.start_at|time:"H:i" }} às {{ talk.end|time:"H:i" }}</p>
 				    </div>
+				    
 				    <div class="modal-footer">
 				      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
 				    </div>
 				</div>
 
 				{% empty %}
-					<li class="collection-item"><p>Esse evento não possui ainda nenhuma Talk cadastradada na plataforma</p></li>
+					<li class="collection-item">
+						<p>Esse evento não possui ainda nenhuma Talk cadastradada na plataforma</p>
+						{% if request.user == event.user %}
+							<span id="btn-event-create"><a class="waves-effect waves-light btn blue" href="{% url 'talks:create' event.pk %}">Adicionar uma Talk</a></span>
+						{% endif %}
+					</li>
+
 			    {% endfor %}
 			{% endfor %}
 		</ul>
