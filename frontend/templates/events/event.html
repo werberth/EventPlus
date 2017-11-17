@@ -3,32 +3,9 @@
 {% load widget_tweaks %}
 
 {% block content %}
-	
-	{% if request.user == event.user %}
-	<div class="container edit-buttons">
-		<div class="row">
-			<h4 id="title">
-				Menu de Edição
-				{% if request.user == event.user %}
-				<span>
-					<a href="{% url 'talks:room_create' event.pk %}" class="waves-effect waves-light btn">Salas</a>
-					<a href="{% url 'talks:create_interval' event.pk %}" class="waves-effect waves-light btn">Criar Intervalo</a>
-				</span>
-				{% endif %}
-			</h4>
-		</div>
-	</div>
-	{% endif %}
 
 	<div class="container events">
-		<h4 id="title">
-			{{ event.name }}
-			{% if request.user == event.user %}
-			<span>
-				<a href="{% url 'events:update' slug=event.slug %}" class="waves-effect waves-light btn">Editar</a>
-			</span>
-			{% endif %}
-		</h4>
+		<h4 id="title">{{ event.name }}</h4>
 		<li class="divider"></li>
 		<div class="information">
 			<div class="item">
@@ -49,23 +26,13 @@
 		</div>
 	</div>
 
-	{% if request.user == event.user %}
-		{% include 'talks/talk_list_edit.html' with event=event talks=talks %}
-	{% else %}
 		{% include 'talks/talk_list.html' with event=event talks=talks %}
-	{% endif %}
 
 	
 	<div class="supporters">
-		{% if request.user == event.user %}
-			{% include 'events/utils/supporter_list_edit.html' with title="Sponsors" event=event supporters=sponsors %}
-			{% include 'events/utils/supporter_list_edit.html' with title="Organizers" event=event supporters=organizers %}
-			{% include 'events/utils/supporter_list_edit.html' with title="Promoters" event=event supporters=promoters %}
-		{% else %}
-			{% include 'events/utils/supporter_list.html' with title="Sponsors" event=event supporters=sponsors %}
-			{% include 'events/utils/supporter_list.html' with title="Organizers" event=event supporters=organizers %}
-			{% include 'events/utils/supporter_list.html' with title="Promoters" event=event supporters=promoters %}
-		{% endif %}
+		{% include 'events/utils/supporter_list.html' with title="Sponsors" event=event supporters=sponsors %}
+		{% include 'events/utils/supporter_list.html' with title="Organizers" event=event supporters=organizers %}
+		{% include 'events/utils/supporter_list.html' with title="Promoters" event=event supporters=promoters %}
 	</div>
 
 

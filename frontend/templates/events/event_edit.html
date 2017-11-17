@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block content %}
+	
+	<div class="container edit-buttons">
+		<div class="row">
+			<h4 id="title">
+				Menu de Edição
+				<span>
+					<a href="{% url 'talks:room_create' event.pk %}" class="waves-effect waves-light btn">Salas</a>
+					<a href="{% url 'talks:create_interval' event.pk %}" class="waves-effect waves-light btn">Criar Intervalo</a>
+				</span>
+			</h4>
+		</div>
+	</div>
+
+	<div class="container events">
+		<h4 id="title">
+			{{ event.name }}
+			<span>
+				<a href="{% url 'events:update' slug=event.slug %}" class="waves-effect waves-light btn">Editar</a>
+			</span>
+		</h4>
+		<li class="divider"></li>
+		<div class="information">
+			<div class="item">
+				<span>Data de Incio:</span> {{ event.start_date }}
+			</div>
+			<div class="item">
+				<span>Termino:</span> {{ event.end_date }}
+			</div>
+			<div class="item">
+				<span>Endereço:</span> {{ event.address }}
+			</div>
+			<div class="item">
+				<span>Cidade:</span> {{ event.city }}
+			</div>
+			<div class="item">
+				<span>Estado:</span> {{ event.state }}
+			</div>
+		</div>
+	</div>
+
+	{% include 'talks/talk_list_edit.html' with event=event talks=talks %}
+
+	
+	<div class="supporters">
+		{% include 'events/utils/supporter_list_edit.html' with title="Sponsors" event=event supporters=sponsors %}
+		{% include 'events/utils/supporter_list_edit.html' with title="Organizers" event=event supporters=organizers %}
+		{% include 'events/utils/supporter_list_edit.html' with title="Promoters" event=event supporters=promoters %}
+	</div>
+
+
+{% endblock content %}
+
+{% block scripts %}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+         
+</script>
+{% endblock scripts %}

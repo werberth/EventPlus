@@ -89,9 +89,13 @@ class EventView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super(EventView, self).get_context_data(**kwargs)
         event = get_object_or_404(Event, slug=kwargs['slug'])
-        talks = self.select_talks_by_day(event)
-        context['all_talks'] = talks
-        print(talks)
+        context['event'] = event
+        context['all_talks'] = self.select_talks_by_day(event)
+        context = self.get_supporters(context, event)
+        print(context)
+        return context
+
+    def get_supporters(self, context, event):
         context['sponsors'] = event.supporters.filter(
             types="sponsors"
         )
@@ -101,7 +105,6 @@ class EventView(generic.TemplateView):
         context['organizers'] = event.supporters.filter(
             types="organizers"
         )
-        context['event'] = event
         return context
 
     def select_talks_by_day(self, event):
@@ -112,6 +115,23 @@ class EventView(generic.TemplateView):
             talks_list.append(talks)
             date += timedelta(days=1)
         return talks_list
+
+
+class EventEditView(EventView):
+    template_name = 'events/event_edit.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(EventEditView, self).get_context_data(**kwargs)
+        event = get_object_or_404(
+            Event,
+            user=self.request.user,
+            slug=kwargs['slug']
+        )
+        context['event'] = event
+        context['all_talks'] = self.select_talks_by_day(event)
+        context = self.get_supporters(context, event)
+        print(context)
+        return context
 
 
 class CreateSupporterView(KwargsEventView, generic.CreateView):

@@ -9,7 +9,8 @@ from .views import (
     UpdateSupporterView,
     DeleteSupporterView,
     MyEventsView,
-    EventView
+    EventView,
+    EventEditView
 )
 
 urlpatterns = [
@@ -18,6 +19,11 @@ urlpatterns = [
         r'^update/(?P<slug>[\w-]+)$',
         UpdateEventView.as_view(),
         name="update"
+    ),
+    url(
+        r'^edit/(?P<slug>[\w-]+)$',
+        EventEditView.as_view(),
+        name="edit"
     ),
     url(
         r'^delete/(?P<slug>[\w-]+)$',
