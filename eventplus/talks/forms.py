@@ -48,6 +48,21 @@ class CleanDate(forms.ModelForm):
                 ao horário de termino e vice-versa.")
             )
 
+    def clean_date(self):
+        data = self.cleaned_data['date']
+        if not (self.event.start_date <= data <= self.event.end_date):
+            raise forms.ValidationError(
+                _("Invalid date! Make sure the reported date is in the\
+                interval between the start and end date of the event.")
+            )
+        return data
+
+    def save(self, commit=True):
+        talk = super().save(commit=False)
+        talk.event = self.event
+        talk.save()
+        return talk
+
 
 class RoomForm(FormKwargsEvent):
     class Meta:
@@ -97,21 +112,6 @@ class TalkForm(CleanDate, FormKwargsEvent):
             else:
                 raise forms.ValidationError(error_message)
         return data
-
-    def clean_date(self):
-        data = self.cleaned_data['date']
-        if not (self.event.start_date <= data <= self.event.end_date):
-            raise forms.ValidationError(
-                _("Invalid date! Make sure the reported date is in the\
-                interval between the start and end date of the event.")
-            )
-        return data
-
-    def save(self, commit=True):
-        talk = super().save(commit=False)
-        talk.event = self.event
-        talk.save()
-        return talk
 
 
 class IntervalForm(CleanDate, FormKwargsEvent):
