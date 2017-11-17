@@ -12,7 +12,7 @@
 				{% if request.user == event.user %}
 				<span>
 					<a href="{% url 'talks:room_create' event.pk %}" class="waves-effect waves-light btn">Salas</a>
-					<a href="{% url 'talks:create' event.pk %}" class="waves-effect waves-light btn">Criar Intervalo</a>
+					<a href="{% url 'talks:create_interval' event.pk %}" class="waves-effect waves-light btn">Criar Intervalo</a>
 				</span>
 				{% endif %}
 			</h4>

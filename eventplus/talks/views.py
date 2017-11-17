@@ -90,11 +90,31 @@ class CreateIntervalView(KwargsEventView, generic.CreateView):
     form_class = IntervalForm
     template_name = 'talks/crud_interval.html'
 
+    def get_success_url(self):
+        event = get_object_or_404(Event, pk=self.kwargs['event'])
+        url = r(
+            'events:event',
+            kwargs={
+                'slug': event.slug
+            }
+        )
+        return url
+
 
 class UpdateIntervalView(KwargsEventView, generic.UpdateView):
     model = Talk
     form_class = IntervalForm
     template_name = 'talks/crud_interval.html'
+
+    def get_success_url(self):
+        event = get_object_or_404(Event, pk=self.kwargs['event'])
+        url = r(
+            'events:event',
+            kwargs={
+                'slug': event.slug
+            }
+        )
+        return url
 
 
 class UpdateTalkView(KwargsEventView, generic.UpdateView):
