@@ -16,7 +16,8 @@
                     - Sala: {{ talk.room }}
                   {% endif %}
                   </span>
-			      <a class="secondary-content modal-trigger" href="#talk_{{ talk.pk }}"><i class="material-icons">add_box</i></a>
+			      <a class="secondary-content modal-trigger" href="#talk_{{ talk.pk }}"><i class="material-icons edit-icons">add_box</i></a>
+			      <a class="secondary-content modal-trigger" href="{% url 'talks:update' event=talk.event.pk pk=talk.pk %}"><i class="material-icons edit-icons">edit</i></a>
 			    </li>
 
 			    <div id="talk_{{ talk.pk }}" class="modal">
