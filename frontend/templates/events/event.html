@@ -49,7 +49,11 @@
 		</div>
 	</div>
 
-	{% include 'talks/talk_list.html' with event=event talks=talks %}
+	{% if request.user == event.user %}
+		{% include 'talks/talk_list_edit.html' with event=event talks=talks %}
+	{% else %}
+		{% include 'talks/talk_list.html' with event=event talks=talks %}
+	{% endif %}
 
 	
 	<div class="supporters">
