@@ -21,6 +21,7 @@
 			{{ event.name }}
 			<span>
 				<a href="{% url 'events:update' slug=event.slug %}" class="waves-effect waves-light btn">Editar</a>
+				<a href="{% url 'events:event' slug=event.slug %}" class="waves-effect waves-light btn">Visualizar Evento</a>
 			</span>
 		</h4>
 		<li class="divider"></li>
