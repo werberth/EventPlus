@@ -9,6 +9,7 @@ from .views import (
     UpdateTalkView,
     UpdateIntervalView,
     DeleteTalkView,
+    DeleteIntervalView,
     ListTalkView
 )
 
@@ -40,12 +41,17 @@ urlpatterns = [
         name="update_interval"
     ),
     url(
+        r'^interval/delete/(?P<event_slug>[\w-]+)/(?P<pk>\d+)/$',
+        DeleteIntervalView.as_view(),
+        name="delete_interval"
+    ),
+    url(
         r'^update/(?P<event>\d+)/(?P<pk>\d+)/$',
         UpdateTalkView.as_view(),
         name="update"
     ),
     url(
-        r'^delete/(?P<pk>\d+)/$',
+        r'^delete/(?P<event_slug>[\w-]+)/(?P<pk>\d+)/$',
         DeleteTalkView.as_view(),
         name="delete"
     ),

@@ -51,13 +51,36 @@ class UpdateTalkView(KwargsEventView, generic.UpdateView):
     template_name = 'talks/crud_talk.html'
 
 
-class DeleteTalkView(generic.DeleteView):
+class DeleteIntervalView(generic.DeleteView):
     model = Talk
-    form_class = RoomForm
-    success_url = r('talks:create')
+
+    def get_success_url(self):
+        url = r(
+            'events:event',
+            kwargs={
+                'slug': self.kwargs['event_slug']
+            }
+        )
+        return url
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
+
+class DeleteTalkView(generic.DeleteView):
+    model = Talk
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        url = r(
+            'events:event',
+            kwargs={
+                'slug': self.kwargs['event_slug']
+            }
+        )
+        return url
 
 
 class ListTalkView(generic.ListView):

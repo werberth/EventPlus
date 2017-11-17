@@ -22,8 +22,16 @@
 			      	href="{% url 'talks:update' event=talk.event.pk pk=talk.pk %}"
 			      {% else %}
 			      	href="{% url 'talks:update_interval' event=talk.event.pk pk=talk.pk %}"
-			      {% endif %}
-			      	><i class="material-icons edit-icons">edit</i></a>
+			      {% endif %}>
+			      	<i class="material-icons edit-icons">edit</i>
+			      </a>
+			      <a class="secondary-content modal-trigger" 
+			      {% if not talk.is_interval %}
+			      	href="{% url 'talks:delete' event_slug=talk.event.slug pk=talk.pk %}"
+			      {% else %}
+			      	href="{% url 'talks:delete_interval' event_slug=talk.event.slug pk=talk.pk %}"
+			      {% endif %}>
+			      <i class="material-icons edit-icons">delete</i></a>
 			    </li>
 
 			    <div id="talk_{{ talk.pk }}" class="modal">
