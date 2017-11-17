@@ -5,25 +5,10 @@ from .models import Room, Talk
 from eventplus.events.forms import FormKwargsEvent
 
 
-class RoomForm(FormKwargsEvent):
-    class Meta:
-        model = Room
-        fields = '__all__'
-
-    def save(self, commit=True):
-        room = super().save(commit=False)
-        room.event = self.event
-        room.save()
-        return room
-
-
-class TalkForm(FormKwargsEvent):
-    class Meta:
-        model = Talk
-        fields = '__all__'
+class CleanDate(forms.ModelForm):
 
     def clean(self):
-        cleaned_data = super(TalkForm, self).clean()
+        cleaned_data = super(CleanDate, self).clean()
         initial = cleaned_data.get('start_at')
         end = cleaned_data.get('end')
         day = cleaned_data.get('date')
@@ -55,13 +40,41 @@ class TalkForm(FormKwargsEvent):
                 else:
                     raise forms.ValidationError(error_message)
 
-            return super(TalkForm, self).clean()
+            return super(CleanDate, self).clean()
         else:
             raise forms.ValidationError(
                 _("Periodo de Inicio ou Fim da Palestra inválido(s).\
                 Verfique se o horário de inicio da Palestra é anterior\
                 ao horário de termino e vice-versa.")
             )
+
+
+class RoomForm(FormKwargsEvent):
+    class Meta:
+        model = Room
+        fields = '__all__'
+
+    def save(self, commit=True):
+        room = super().save(commit=False)
+        room.event = self.event
+        room.save()
+        return room
+
+
+class TalkForm(CleanDate, FormKwargsEvent):
+    class Meta:
+        model = Talk
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(TalkForm, self).__init__(*args, **kwargs)
+        self.fields['speaker_name'].required = True
+        self.fields['speaker_photo'].required = True
+        self.fields['talk_description'].required = True
+        self.fields['speaker_description'].required = True
+        self.fields['description_file'].required = True
+        self.fields['is_interval'].required = False
+        self.fields['room'].required = True
 
     def clean_talk_title(self):
         data = self.cleaned_data['talk_title']
@@ -99,3 +112,21 @@ class TalkForm(FormKwargsEvent):
         talk.event = self.event
         talk.save()
         return talk
+
+
+class IntervalForm(CleanDate, FormKwargsEvent):
+    class Meta:
+        model = Talk
+        fields = ('talk_title', 'event', 'date', 'start_at', 'end', 'talk_description')
+
+    def __init__(self, *args, **kwargs):
+        super(IntervalForm, self).__init__(*args, **kwargs)
+        self.fields['talk_title'].required = False
+
+    def save(self, commit=True):
+        interval = super(IntervalForm, self).save(commit=False)
+        interval.event = self.event
+        interval.is_interval = True
+        interval.talk_title = "Intervalo"
+        interval.save()
+        return interval
