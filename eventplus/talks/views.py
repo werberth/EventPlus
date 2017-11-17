@@ -39,6 +39,12 @@ class CreateIntervalView(KwargsEventView, generic.CreateView):
     template_name = 'talks/crud_interval.html'
 
 
+class UpdateIntervalView(KwargsEventView, generic.UpdateView):
+    model = Talk
+    form_class = IntervalForm
+    template_name = 'talks/crud_interval.html'
+
+
 class UpdateTalkView(KwargsEventView, generic.UpdateView):
     model = Talk
     form_class = TalkForm

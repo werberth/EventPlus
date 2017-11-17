@@ -7,6 +7,7 @@ from .views import (
     CreateTalkView,
     CreateIntervalView,
     UpdateTalkView,
+    UpdateIntervalView,
     DeleteTalkView,
     ListTalkView
 )
@@ -28,7 +29,16 @@ urlpatterns = [
         name="room_delete"
     ),
     url(r'^create/(?P<event>\d+)/$', CreateTalkView.as_view(), name="create"),
-    url(r'^interval/create/(?P<event>\d+)/$', CreateIntervalView.as_view(), name="create"),
+    url(
+        r'^interval/create/(?P<event>\d+)/$',
+        CreateIntervalView.as_view(),
+        name="create_interval"
+    ),
+    url(
+        r'^interval/create/(?P<event>\d+)/(?P<pk>\d+)/$',
+        UpdateIntervalView.as_view(),
+        name="update_interval"
+    ),
     url(
         r'^update/(?P<event>\d+)/(?P<pk>\d+)/$',
         UpdateTalkView.as_view(),

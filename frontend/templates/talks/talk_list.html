@@ -17,7 +17,13 @@
                   {% endif %}
                   </span>
 			      <a class="secondary-content modal-trigger" href="#talk_{{ talk.pk }}"><i class="material-icons edit-icons">add_box</i></a>
-			      <a class="secondary-content modal-trigger" href="{% url 'talks:update' event=talk.event.pk pk=talk.pk %}"><i class="material-icons edit-icons">edit</i></a>
+			      <a class="secondary-content modal-trigger" 
+			      {% if not talk.is_interval %}
+			      	href="{% url 'talks:update' event=talk.event.pk pk=talk.pk %}"
+			      {% else %}
+			      	href="{% url 'talks:update_interval' event=talk.event.pk pk=talk.pk %}"
+			      {% endif %}
+			      	><i class="material-icons edit-icons">edit</i></a>
 			    </li>
 
 			    <div id="talk_{{ talk.pk }}" class="modal">
