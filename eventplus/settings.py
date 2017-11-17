@@ -1,4 +1,7 @@
 import os
+
+from django.core.urlresolvers import reverse_lazy
+
 from unipath import Path
 from dj_database_url import parse as dburl
 from dj_database_url import config as djb_config
@@ -110,6 +113,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# AUTH SETTINGS
+LOGIN_URL = reverse_lazy('accounts:login')
+LOGIN_REDIRECT_URL = reverse_lazy('events:myevents')
+LOGOUT_URL = reverse_lazy('accounts:logout')
+LOGOUT_REDIRECT_URL = reverse_lazy('events:list')
 
 
 # Static files (CSS, JavaScript, Images)
