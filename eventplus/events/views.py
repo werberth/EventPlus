@@ -54,7 +54,7 @@ class UpdateEventView(KwargsUserView, generic.UpdateView):
 
 class DeleteEventView(generic.DeleteView):
     model = Event
-    success_url = r('events:create')
+    success_url = r('events:myevents')
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
