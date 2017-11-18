@@ -16,7 +16,11 @@ class CreateUserView(generic.CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        auth_login(self.request, user)
+        auth_login(
+            self.request,
+            user,
+            backend='django.contrib.auth.backends.ModelBackend'
+        )
         return HttpResponseRedirect(self.success_url)
 
 
