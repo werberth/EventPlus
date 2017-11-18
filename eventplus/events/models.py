@@ -8,7 +8,7 @@ class Event(models.Model):
     user = models.ForeignKey(
         User,
         related_name='events',
-        verbose_name=_('Usuário')
+        verbose_name=_('User')
     )
     name = models.CharField(_("Name"), max_length=155)
     slug = models.SlugField(_("Slug"), unique=True, blank=True)
