@@ -36,6 +36,27 @@ class CreateEventForm(FormKwargsUser):
             )
         return data
 
+    def clean(self):
+        cleaned_data = super(CreateEventForm, self).clean()
+        start_at = cleaned_data.get('start_at')
+        end_at = cleaned_data.get('end_at')
+        start_date = cleaned_data.get('start_date')
+        end_date = cleaned_data.get('end_date')
+
+        if start_date > end_date:
+            raise forms.ValidationError(
+                _("Invalid Start Date or End Date Period of the Event.\
+                Check if the Start Date of the event is before the\
+                End Date.")
+            )
+        if start_at > end_at:
+            raise forms.ValidationError(
+                _("Invalid Start At or End At Period of the Event.\
+                Check if the Start At of the event is before the\
+                End At.")
+            )
+        return cleaned_data
+
     def save(self, commit=True):
         event = super(CreateEventForm, self).save(commit=False)
         event.user = self.user

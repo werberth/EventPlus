@@ -41,6 +41,18 @@
 					</div>
 				</div>
 
+				<div class="row">
+					<div class="col s5">	
+						<label>{{ form.start_at.label}}</label>
+						{% render_field form.start_at class="timepicker" %} 
+					</div>
+					<div class="col s5">
+						<label>{{ form.end_at.label}}</label>
+						{% render_field form.end_at class="timepicker" %} 
+					</div>
+				</div>
+
+
 				{% include "utils/forms_error.html" %}
 				
                 <div class="card-action">
