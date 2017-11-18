@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy as r
 
 from .models import Room, Talk
@@ -9,7 +10,7 @@ from eventplus.events.views import KwargsEventView
 from eventplus.events.models import Event
 
 
-class CreateRoomView(KwargsEventView, generic.CreateView):
+class CreateRoomView(LoginRequiredMixin, KwargsEventView, generic.CreateView):
     model = Room
     form_class = RoomForm
     template_name = 'talks/crud_room.html'
@@ -24,7 +25,7 @@ class CreateRoomView(KwargsEventView, generic.CreateView):
         return url
 
 
-class UpdateRoomView(KwargsEventView, generic.UpdateView):
+class UpdateRoomView(LoginRequiredMixin, KwargsEventView, generic.UpdateView):
     model = Room
     form_class = RoomForm
     template_name = 'talks/crud_room.html'
@@ -39,7 +40,7 @@ class UpdateRoomView(KwargsEventView, generic.UpdateView):
         return url
 
 
-class DeleteRoomView(generic.DeleteView):
+class DeleteRoomView(LoginRequiredMixin, generic.DeleteView):
     model = Room
     form_class = RoomForm
     success_url = r('talks:room_create')
@@ -57,7 +58,7 @@ class DeleteRoomView(generic.DeleteView):
         return url
 
 
-class ListRoomView(KwargsEventView, generic.ListView):
+class ListRoomView(LoginRequiredMixin, KwargsEventView, generic.ListView):
     model = Room
     template_name = 'talks/list_rooms.html'
     context_object_name = 'rooms'
@@ -73,7 +74,7 @@ class ListRoomView(KwargsEventView, generic.ListView):
         return context
 
 
-class CreateTalkView(KwargsEventView, generic.CreateView):
+class CreateTalkView(LoginRequiredMixin, KwargsEventView, generic.CreateView):
     model = Talk
     form_class = TalkForm
     template_name = 'talks/crud_talk.html'
@@ -89,7 +90,11 @@ class CreateTalkView(KwargsEventView, generic.CreateView):
         return url
 
 
-class CreateIntervalView(KwargsEventView, generic.CreateView):
+class CreateIntervalView(
+        LoginRequiredMixin,
+        KwargsEventView,
+        generic.CreateView):
+
     model = Talk
     form_class = IntervalForm
     template_name = 'talks/crud_interval.html'
@@ -105,7 +110,11 @@ class CreateIntervalView(KwargsEventView, generic.CreateView):
         return url
 
 
-class UpdateIntervalView(KwargsEventView, generic.UpdateView):
+class UpdateIntervalView(
+        LoginRequiredMixin,
+        KwargsEventView,
+        generic.UpdateView):
+
     model = Talk
     form_class = IntervalForm
     template_name = 'talks/crud_interval.html'
@@ -121,7 +130,7 @@ class UpdateIntervalView(KwargsEventView, generic.UpdateView):
         return url
 
 
-class UpdateTalkView(KwargsEventView, generic.UpdateView):
+class UpdateTalkView(LoginRequiredMixin, KwargsEventView, generic.UpdateView):
     model = Talk
     form_class = TalkForm
     template_name = 'talks/crud_talk.html'
@@ -137,7 +146,7 @@ class UpdateTalkView(KwargsEventView, generic.UpdateView):
         return url
 
 
-class DeleteIntervalView(generic.DeleteView):
+class DeleteIntervalView(LoginRequiredMixin, generic.DeleteView):
     model = Talk
 
     def get_success_url(self):
@@ -153,7 +162,7 @@ class DeleteIntervalView(generic.DeleteView):
         return self.post(request, *args, **kwargs)
 
 
-class DeleteTalkView(generic.DeleteView):
+class DeleteTalkView(LoginRequiredMixin, generic.DeleteView):
     model = Talk
 
     def get(self, request, *args, **kwargs):
