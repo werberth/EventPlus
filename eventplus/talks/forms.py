@@ -31,9 +31,9 @@ class CleanDate(forms.ModelForm):
                 )
             ).exists():
                 error_message = _(
-                    "Já existe uma palestra nesse horario, verfique a lista\
-                    de palestras para saber quais horarios já extão reservados\
-                    e tente novamente"
+                    "There is already a talk at this time, check\
+                    the list of lectures to find out which extant times\
+                    are reserved and try again"
                 )
                 if hasattr(self, 'instance'):
                     talk_search = Talk.objects.get(
@@ -50,9 +50,10 @@ class CleanDate(forms.ModelForm):
             return super(CleanDate, self).clean()
         else:
             raise forms.ValidationError(
-                _("Periodo de Inicio ou Fim da Palestra inválido(s).\
-                Verfique se o horário de inicio da Palestra é anterior\
-                ao horário de termino e vice-versa.")
+                _(
+                    "Invalid Talk Start or End Period. Make sure that the start\
+                    time of the lecture is before the end time and vice versa."
+                )
             )
 
     def clean_date(self):
