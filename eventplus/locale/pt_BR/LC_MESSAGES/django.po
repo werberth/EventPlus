@@ -1,0 +1,200 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-18 01:52-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: eventplus/accounts/forms.py:11 eventplus/accounts/forms.py:32
+msgid "Email address"
+msgstr "Endereço de Email"
+
+#: eventplus/accounts/forms.py:13 eventplus/accounts/forms.py:34
+msgid "Required."
+msgstr "Obrigatário"
+
+#: eventplus/events/forms.py:34
+msgid ""
+"Invalid Address. Make sure your address contains street,                     "
+"neighborhood and house number, separated by commas."
+msgstr ""
+"Endereço inválido. Certifique-se de que seu endereço contenha a rua, a "
+"bairro e o número da casa, separados por vírgulas."
+
+#: eventplus/events/forms.py:48
+msgid ""
+"Invalid Start Date or End Date Period of the Event.                Check if "
+"the Start Date of the event is before the                End Date."
+msgstr ""
+"Data de Inicio e/ou Data Encerramento do evento inválida(s). Verifique se a "
+"Data de Início é Anterior a Data de Encerramento."
+
+#: eventplus/events/forms.py:54
+msgid ""
+"Invalid Start At or End At Period of the Event.                Check if the "
+"Start At of the event is before the                End At."
+msgstr ""
+"O Horario de Inicio e Termino do evento inválidos. Verifique se o Horario de "
+"Inicio do Evento é anterior ao Horário de Termino."
+
+#: eventplus/events/models.py:11
+msgid "User"
+msgstr ""
+
+#: eventplus/events/models.py:13 eventplus/events/models.py:44
+#: eventplus/talks/models.py:9
+msgid "Name"
+msgstr "Nome"
+
+#: eventplus/events/models.py:14
+msgid "Slug"
+msgstr "Slug"
+
+#: eventplus/events/models.py:15
+#, fuzzy
+#| msgid "Email address"
+msgid "Address"
+msgstr "Endereço de Email"
+
+#: eventplus/events/models.py:16
+msgid "City"
+msgstr "Cidade"
+
+#: eventplus/events/models.py:17
+msgid "State"
+msgstr "Estado"
+
+#: eventplus/events/models.py:18
+msgid "Start Date"
+msgstr "Date de Inicio"
+
+#: eventplus/events/models.py:19
+msgid "End Date"
+msgstr "Date de Encerramento"
+
+#: eventplus/events/models.py:20 eventplus/talks/models.py:41
+msgid "Start at"
+msgstr "Horario de Inicio"
+
+#: eventplus/events/models.py:21
+msgid "End at"
+msgstr "Horario de Termino"
+
+#: eventplus/events/models.py:33
+msgid "Sponsors"
+msgstr "Patrocinadores"
+
+#: eventplus/events/models.py:34
+msgid "Promoters"
+msgstr "Apoiadores"
+
+#: eventplus/events/models.py:35
+msgid "Organizers"
+msgstr "Organizadores"
+
+#: eventplus/events/models.py:41 eventplus/talks/models.py:13
+msgid "Event"
+msgstr "Evento"
+
+#: eventplus/events/models.py:45
+msgid "WebSite"
+msgstr "Site"
+
+#: eventplus/talks/forms.py:21
+msgid ""
+"The start or end time of the talk                        exceeds the limits "
+"of the time of the event."
+msgstr ""
+"O horario de início ou término da Palestra excede os limites do tempo do "
+"evento."
+
+#: eventplus/talks/forms.py:34
+msgid ""
+"There is already a talk at this time, check                    the list of "
+"lectures to find out which extant times                    are reserved and "
+"try again"
+msgstr ""
+"Desculpe, já existe uma palestra nesse evento com este título, insira outro "
+"título e tente novamente."
+
+#: eventplus/talks/forms.py:54
+msgid ""
+"Invalid Talk Start or End Period. Make sure that the "
+"start                    time of the lecture is before the end time and vice "
+"versa."
+msgstr ""
+"O Horario de Inicio e Termino do evento inválidos. Verifique se o Horario de "
+"Inicio do Evento é anterior ao Horário de Termino."
+
+#: eventplus/talks/forms.py:63
+msgid ""
+"Invalid date! Make sure the reported date is in the                interval "
+"between the start and end date of the event."
+msgstr ""
+"Data inválida! Certifique-se de que a data inserida está no intervalo entre "
+"o início e a data de término do evento."
+
+#: eventplus/talks/forms.py:109
+msgid ""
+"Sorry, there is already a Talk on this Event                with this title, "
+"please insert another title and                try again."
+msgstr ""
+"Desculpe, já existe uma palestra nesse evento com este título, insira outro "
+"título e tente novamente."
+
+#: eventplus/talks/models.py:23
+msgid "Events"
+msgstr "Eventos"
+
+#: eventplus/talks/models.py:25
+msgid "Talk Title"
+msgstr "Título da Palestra"
+
+#: eventplus/talks/models.py:26
+msgid "Talk Description"
+msgstr "Descrição da Palestra"
+
+#: eventplus/talks/models.py:27
+msgid "Speaker Name"
+msgstr "Nome do Palestrante"
+
+#: eventplus/talks/models.py:28
+msgid "Speaker Photograph"
+msgstr "Imagem do Palestrante"
+
+#: eventplus/talks/models.py:30
+msgid "Speaker Description"
+msgstr "Descrição do Palestrante"
+
+#: eventplus/talks/models.py:37
+msgid "Room"
+msgstr "Sala"
+
+#: eventplus/talks/models.py:40
+msgid "Is Inverval"
+msgstr "É um intervalo"
+
+#: eventplus/talks/models.py:42
+msgid "End"
+msgstr "Termino"
+
+#: eventplus/talks/models.py:43
+msgid "Date"
+msgstr "Date"
+
+#: eventplus/talks/models.py:44
+msgid "Explanatory File"
+msgstr "Arquivo da Apresentação"
