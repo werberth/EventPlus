@@ -30,7 +30,7 @@ class CreateEventView(KwargsUserView, generic.CreateView):
     def form_valid(self, form):
         event = form.save()
         url = r(
-            'events:event',
+            'events:edit',
             kwargs={
                 'slug': event.slug
             }
@@ -44,7 +44,7 @@ class UpdateEventView(KwargsUserView, generic.UpdateView):
 
     def get_success_url(self):
         url = r(
-            'events:event',
+            'events:edit',
             kwargs={
                 'slug': self.kwargs['slug']
             }
@@ -142,7 +142,7 @@ class CreateSupporterView(KwargsEventView, generic.CreateView):
     def get_success_url(self):
         event = get_object_or_404(Event, pk=self.kwargs['event'])
         url = r(
-            'events:event',
+            'events:edit',
             kwargs={
                 'slug': event.slug
             }
@@ -158,7 +158,7 @@ class UpdateSupporterView(KwargsEventView, generic.UpdateView):
     def get_success_url(self):
         event = get_object_or_404(Event, pk=self.kwargs['event'])
         url = r(
-            'events:event',
+            'events:edit',
             kwargs={
                 'slug': event.slug
             }
@@ -172,7 +172,7 @@ class DeleteSupporterView(generic.DeleteView):
 
     def get_success_url(self):
         url = r(
-            'events:event',
+            'events:edit',
             kwargs={
                 'slug': self.kwargs['event']
             }
