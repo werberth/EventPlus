@@ -1,4 +1,5 @@
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy as r
@@ -24,7 +25,7 @@ class CreateUserView(generic.CreateView):
         return HttpResponseRedirect(self.success_url)
 
 
-class UpdateUserView(generic.UpdateView):
+class UpdateUserView(LoginRequiredMixin, generic.UpdateView):
     model = User
     form_class = UpdateUserForm
     template_name = 'accounts/crud_accounts.html'
@@ -35,7 +36,7 @@ class UpdateUserView(generic.UpdateView):
         return obj
 
 
-class ChangePasswordView(PasswordChangeView):
+class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
     model = User
     form_class = SetPasswordForm
     template_name = 'accounts/crud_accounts.html'
