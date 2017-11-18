@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy as r
 
 from .models import Event, Supporters
@@ -22,7 +23,7 @@ class KwargsUserView(object):
         return kwargs
 
 
-class CreateEventView(KwargsUserView, generic.CreateView):
+class CreateEventView(LoginRequiredMixin, KwargsUserView, generic.CreateView):
     model = Event
     form_class = CreateEventForm
     template_name = 'events/crud_event.html'
@@ -37,7 +38,11 @@ class CreateEventView(KwargsUserView, generic.CreateView):
         )
         return HttpResponseRedirect(url)
 
-class UpdateEventView(KwargsUserView, generic.UpdateView):
+
+class UpdateEventView(
+        LoginRequiredMixin,
+        KwargsUserView,
+        generic.UpdateView):
     model = Event
     form_class = CreateEventForm
     template_name = 'events/crud_event.html'
@@ -52,7 +57,7 @@ class UpdateEventView(KwargsUserView, generic.UpdateView):
         return url
 
 
-class DeleteEventView(generic.DeleteView):
+class DeleteEventView(LoginRequiredMixin, generic.DeleteView):
     model = Event
     success_url = r('events:myevents')
 
@@ -71,7 +76,7 @@ class ListEventView(generic.ListView):
     context_object_name = 'events'
 
 
-class MyEventsView(generic.ListView):
+class MyEventsView(LoginRequiredMixin, generic.ListView):
     model = Event
     template_name = 'events/my_events.html'
     context_object_name = 'events'
@@ -117,7 +122,7 @@ class EventView(generic.TemplateView):
         return talks_list
 
 
-class EventEditView(EventView):
+class EventEditView(LoginRequiredMixin, EventView):
     template_name = 'events/event_edit.html'
 
     def get_context_data(self, **kwargs):
@@ -134,7 +139,11 @@ class EventEditView(EventView):
         return context
 
 
-class CreateSupporterView(KwargsEventView, generic.CreateView):
+class CreateSupporterView(
+        LoginRequiredMixin,
+        KwargsEventView,
+        generic.CreateView):
+
     model = Supporters
     form_class = SupporterForm
     template_name = 'events/crud_supporter.html'
@@ -150,7 +159,11 @@ class CreateSupporterView(KwargsEventView, generic.CreateView):
         return url
 
 
-class UpdateSupporterView(KwargsEventView, generic.UpdateView):
+class UpdateSupporterView(
+        LoginRequiredMixin,
+        KwargsEventView,
+        generic.UpdateView):
+
     model = Supporters
     form_class = SupporterForm
     template_name = 'events/crud_supporter.html'
@@ -166,7 +179,7 @@ class UpdateSupporterView(KwargsEventView, generic.UpdateView):
         return url
 
 
-class DeleteSupporterView(generic.DeleteView):
+class DeleteSupporterView(LoginRequiredMixin, generic.DeleteView):
     model = Supporters
     success_url = r('events:supporter_create')
 
