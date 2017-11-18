@@ -6,7 +6,7 @@ urlpatterns = [
     url(r'^create/$', CreateUserView.as_view(), name='create'),
     url(r'^update/(?P<pk>\d+)/$', UpdateUserView.as_view(), name='update'),
     url(
-        r'^change-password/(?P<pk>\d+)/$',
+        r'^change-password/$',
         ChangePasswordView.as_view(),
         name='change_password'
     ),

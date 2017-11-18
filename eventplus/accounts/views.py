@@ -1,32 +1,34 @@
 from django.views import generic
+from django.contrib.auth.views import PasswordChangeView
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse_lazy as r
 from django.contrib.auth.models import User
-from .forms import CreateUserForm, UpdateUserForm, NewSetPasswordForm
+from django.contrib.auth import login as auth_login
+from django.contrib.auth.forms import SetPasswordForm
+from .forms import CreateUserForm, UpdateUserForm
 
 
 class CreateUserView(generic.CreateView):
     model = User
     form_class = CreateUserForm
     template_name = 'accounts/crud_accounts.html'
+    success_url = r('events:myevents')
+
+    def form_valid(self, form):
+        user = form.save()
+        auth_login(self.request, user)
+        return HttpResponseRedirect(self.success_url)
 
 
 class UpdateUserView(generic.UpdateView):
     model = User
     form_class = UpdateUserForm
     template_name = 'accounts/crud_accounts.html'
+    success_url = r('events:myevents')
 
 
-class ChangePasswordView(generic.FormView):
+class ChangePasswordView(PasswordChangeView):
     model = User
-    form_class = NewSetPasswordForm
+    form_class = SetPasswordForm
     template_name = 'accounts/crud_accounts.html'
-
-    def get_form_kwargs(self):
-        '''
-            O formulário NewSetPasswordForm exige a passagem de vários
-            parâmetros, dentre eles o usuário o qual deseja-se modificar
-            sua senha. Por meio desse método, o usuário é definido junto
-            ao kwargs e passado ao formulário.
-        '''
-        kwargs = super(ChangePasswordView, self).get_form_kwargs()
-        kwargs['user'] = User.objects.get(pk=self.kwargs['pk'])
-        return kwargs
+    success_url = r('events:myevents')
