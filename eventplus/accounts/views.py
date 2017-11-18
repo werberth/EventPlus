@@ -26,6 +26,10 @@ class UpdateUserView(generic.UpdateView):
     template_name = 'accounts/crud_accounts.html'
     success_url = r('events:myevents')
 
+    def get_object(self, queryset=None):
+        obj = self.request.user
+        return obj
+
 
 class ChangePasswordView(PasswordChangeView):
     model = User
