@@ -3,6 +3,18 @@
 	font-weight: bold;
 }
 
+@mixin navbar_dropdown_liks() {
+	a {
+		font-size: 17px;
+		color: $blue-theme;
+
+		&:hover{
+			background: $blue-theme;
+			color: white;
+		}
+	}
+}
+
 
 nav {
 	.brand-logo {
@@ -13,6 +25,15 @@ nav {
 
 	ul {
 		li {
+
+			#dados {
+				@include navbar_dropdown_liks();		
+			}
+
+			#auth {
+				@include navbar_dropdown_liks();
+			}
+
 			a {
 				font-size: 17px;
 

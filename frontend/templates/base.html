@@ -33,9 +33,18 @@
             {% if user.is_authenticated %}
                 <li><a href="{% url 'events:list' %}">Todos os Eventos</a></li>
                 <li><a href="{% url 'events:myevents' %}">Meus Eventos</a></li>
-                <li><a  class="dropdown-button" data-beloworigin="true" data-activates="dropdown" href="#">
+                
+                <li><a  class="dropdown-button" data-beloworigin="true" data-activates="dados" href="#">
+                    Meus Dados <i class="material-icons right">arrow_drop_down</i></a></li>
+                <ul id="dados" class="dropdown-content">
+                  <li><a href="{% url 'accounts:update' user.pk %}">Editar Informações do Usuário</a></li>
+                  <li><a href="{% url 'accounts:change_password' %}">Alterar Senha do Usuário</a></li>
+                </ul>
+
+
+                <li><a  class="dropdown-button" data-beloworigin="true" data-activates="auth" href="#">
                     Logout <i class="material-icons right">arrow_drop_down</i></a></li>
-                <ul id="dropdown" class="dropdown-content">
+                <ul id="auth" class="dropdown-content">
                   <li><a href="{% url 'accounts:logout' %}">Sair</a></li>
                 </ul>
             {% else %}
