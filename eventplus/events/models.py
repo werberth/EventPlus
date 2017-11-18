@@ -17,6 +17,8 @@ class Event(models.Model):
     state = models.CharField(max_length=150)
     start_date = models.DateField(_('Start Date'))
     end_date = models.DateField(_('End Date'))
+    start_at = models.TimeField(_('Start at'))
+    end_at = models.TimeField(_('End at'))
 
     def __str__(self):
         return '{0} - {1}, {2}'.format(self.name, self.state, self.city)
