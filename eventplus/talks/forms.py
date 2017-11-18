@@ -15,6 +15,13 @@ class CleanDate(forms.ModelForm):
         room = cleaned_data.get('room')
 
         if(initial < end):
+            if initial < self.event.start_at or end > self.event.end_at:
+                raise forms.ValidationError(
+                    _(
+                        "The start or end time of the talk\
+                        exceeds the limits of the time of the event."
+                    )
+                )
             if(
                 Talk.objects.filter(
                     start_at__gte=initial,

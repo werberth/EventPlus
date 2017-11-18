@@ -9,12 +9,6 @@
 		<li class="divider"></li>
 		<div class="information">
 			<div class="item">
-				<span>Data de Incio:</span> {{ event.start_date }}
-			</div>
-			<div class="item">
-				<span>Termino:</span> {{ event.end_date }}
-			</div>
-			<div class="item">
 				<span>Endereço:</span> {{ event.address }}
 			</div>
 			<div class="item">
@@ -22,6 +16,18 @@
 			</div>
 			<div class="item">
 				<span>Estado:</span> {{ event.state }}
+			</div>
+			<div class="item">
+				<span>Data de Incio:</span> {{ event.start_date }}
+			</div>
+			<div class="item">
+				<span>Termino:</span> {{ event.end_date }}
+			</div>
+			<div class="item">
+				<span>Horario de Inicio:</span> {{ event.start_at }}
+			</div>
+			<div class="item">
+				<span>Horario de Encerramento:</span> {{ event.end_at }}
 			</div>
 		</div>
 	</div>
