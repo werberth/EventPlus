@@ -27,19 +27,14 @@ class CreateUserForm(UserCreationForm):
         return user
 
 
-class UpdateUserForm(CreateUserForm):
+class UpdateUserForm(forms.ModelForm):
+    email = forms.EmailField(
+        label=_("Email address"),
+        required=True,
+        help_text=_("Required."),
+        validators=[EmailValidator]
+    )
+
     class Meta:
         model = User
         fields = ("username", "email")
-
-
-class NewSetPasswordForm(SetPasswordForm):
-    '''
-        Esse formulário herda do SetPasswordForm, modificando
-        apenas a forma como a instancia do usuário (o qual senha será
-        modificada) é passada, utilizando o kwargs da CBV.
-    '''
-
-    def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user')
-        super(NewSetPasswordForm, self).__init__(self.user, *args, **kwargs)
