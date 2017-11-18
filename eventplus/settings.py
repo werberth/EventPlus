@@ -120,6 +120,11 @@ LOGIN_REDIRECT_URL = reverse_lazy('events:myevents')
 LOGOUT_URL = reverse_lazy('accounts:logout')
 LOGOUT_REDIRECT_URL = reverse_lazy('events:list')
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'eventplus.accounts.backends.EmailBackend',
+)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
