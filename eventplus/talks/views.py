@@ -73,13 +73,6 @@ class ListRoomView(KwargsEventView, generic.ListView):
         return context
 
 
-class ListTalkView(generic.ListView):
-    model = Talk
-    queryset = Talk.objects.all()
-    template_name = 'events/list_talks.html'
-    context_object_name = 'talks'
-
-
 class CreateTalkView(KwargsEventView, generic.CreateView):
     model = Talk
     form_class = TalkForm
@@ -174,10 +167,3 @@ class DeleteTalkView(generic.DeleteView):
             }
         )
         return url
-
-
-class ListTalkView(generic.ListView):
-    model = Talk
-    queryset = Talk.objects.all()
-    template_name = 'events/list_talks.html'
-    context_object_name = 'talks'
