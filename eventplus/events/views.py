@@ -74,12 +74,14 @@ class ListEventView(generic.ListView):
 
     template_name = 'events/list_events.html'
     context_object_name = 'events'
+    paginate_by = 5
 
 
 class MyEventsView(LoginRequiredMixin, generic.ListView):
     model = Event
     template_name = 'events/my_events.html'
     context_object_name = 'events'
+    paginate_by = 5
 
     def get_queryset(self):
         queryset = Event.objects.filter(

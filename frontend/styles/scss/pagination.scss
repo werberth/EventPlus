@@ -10,7 +10,7 @@
 		a {
 			&:not(.active) {
 				&:hover{
-					background-color: lighten($blue-theme, 15%);
+					background-color: darken($blue-theme, 15%);
 					color: $yellow-theme;
 				}
 			}

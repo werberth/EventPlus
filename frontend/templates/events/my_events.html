@@ -35,5 +35,9 @@
 				</ul>
 			</div>
 		</div>
+		
+		{% if paginator.num_pages > 1 %}
+				{% include "utils/pagination.html" %}
+		{% endif %}
 	</div>
 {% endblock content %}
