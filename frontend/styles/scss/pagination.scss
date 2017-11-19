@@ -1,0 +1,19 @@
+.pagination {
+	li {
+		&.active {
+			a {
+				color: $yellow-theme;
+				background-color: $blue-theme;
+			}
+		}
+
+		a {
+			&:not(.active) {
+				&:hover{
+					background-color: lighten($blue-theme, 15%);
+					color: $yellow-theme;
+				}
+			}
+		}
+	}
+}

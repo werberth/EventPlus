@@ -62,10 +62,11 @@ class ListRoomView(LoginRequiredMixin, KwargsEventView, generic.ListView):
     model = Room
     template_name = 'talks/list_rooms.html'
     context_object_name = 'rooms'
+    paginate_by = 5
 
     def get_queryset(self):
         self.event = get_object_or_404(Event, pk=self.kwargs['event'])
-        queryset = self.event.rooms.all()
+        queryset = self.event.rooms.all().order_by('name')
         return queryset
 
     def get_context_data(self, **kwargs):
