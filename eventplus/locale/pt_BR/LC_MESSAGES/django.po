@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-19 02:09-0300\n"
+"POT-Creation-Date: 2017-11-19 02:17-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,6 +49,12 @@ msgid ""
 msgstr ""
 "O Horario de Inicio e Termino do evento inválidos. Verifique se o Horario de "
 "Inicio do Evento é anterior ao Horário de Termino."
+
+#: eventplus/events/forms.py:64
+msgid ""
+"An event with this name already exists on                the platform, enter "
+"another name, and try again."
+msgstr "Já existe um evento com esse nome na plataforma, insira outro nome e tente novamente."
 
 #: eventplus/events/models.py:11
 msgid "User"

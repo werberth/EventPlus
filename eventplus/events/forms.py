@@ -57,6 +57,15 @@ class CreateEventForm(FormKwargsUser):
             )
         return cleaned_data
 
+    def clean_name(self):
+        data = self.cleaned_data['name']
+        if Event.objects.filter(name=data).exists():
+            raise forms.ValidationError(
+                _("An event with this name already exists on\
+                the platform, enter another name, and try again.")
+            )
+        return data
+
     def save(self, commit=True):
         event = super(CreateEventForm, self).save(commit=False)
         event.user = self.user
