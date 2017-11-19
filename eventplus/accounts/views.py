@@ -9,6 +9,10 @@ from django.contrib.auth.forms import SetPasswordForm
 from .forms import CreateUserForm, UpdateUserForm
 
 
+class IndexView(generic.RedirectView):
+    def dispatch(self, request, *args, **kwargs):
+        return HttpResponseRedirect(r('events:list'))
+
 class CreateUserView(generic.CreateView):
     model = User
     form_class = CreateUserForm

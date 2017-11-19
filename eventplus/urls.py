@@ -5,9 +5,12 @@ from django.conf import settings
 
 from django.views.i18n import JavaScriptCatalog
 
+from eventplus.accounts.views import IndexView
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+    url(r'^$', IndexView.as_view(), name='index'),
     url(r'^events/', include('eventplus.events.urls', namespace='events')),
     url(r'^talks/', include('eventplus.talks.urls', namespace='talks')),
     url(
