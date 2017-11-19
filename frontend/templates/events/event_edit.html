@@ -54,9 +54,9 @@
 
 	
 	<div class="supporters">
-		{% include 'events/utils/supporter_list_edit.html' with title="Sponsors" event=event supporters=sponsors %}
-		{% include 'events/utils/supporter_list_edit.html' with title="Organizers" event=event supporters=organizers %}
-		{% include 'events/utils/supporter_list_edit.html' with title="Promoters" event=event supporters=promoters %}
+		{% include 'events/utils/supporter_list_edit.html' with subtitle="patrocinador" title="Patrocinadores" event=event supporters=sponsors %}
+		{% include 'events/utils/supporter_list_edit.html' with subtitle="organizador" title="Organizadores" event=event supporters=organizers %}
+		{% include 'events/utils/supporter_list_edit.html' with subtitle="apoio" title="Apoio" event=event supporters=promoters %}
 	</div>
 
 

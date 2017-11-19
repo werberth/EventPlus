@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
 	<div class="container">
 		<div class="row">
 			    <ul class="collection with-header list">
-		            <li class="collection-header"><h4>Event List</h4></li>
+		            <li class="collection-header"><h4>{% trans "Event List" %}</h4></li>
 			        {% for event in events %}
 						    <li class="collection-item">
 						      <span class="list-item-title"><a href="{% url 'events:event' slug=event.slug %}">{{ event.name }} - {{ event.state }}, {{ event.city }}</a></span><br>

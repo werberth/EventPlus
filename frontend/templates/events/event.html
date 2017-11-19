@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load i18n %}
 {% load widget_tweaks %}
 
 {% block content %}
@@ -36,9 +37,9 @@
 
 	
 	<div class="supporters">
-		{% include 'events/utils/supporter_list.html' with title="Sponsors" event=event supporters=sponsors %}
-		{% include 'events/utils/supporter_list.html' with title="Organizers" event=event supporters=organizers %}
-		{% include 'events/utils/supporter_list.html' with title="Promoters" event=event supporters=promoters %}
+		{% include 'events/utils/supporter_list.html' with title="Patrocinadores" event=event supporters=sponsors %}
+		{% include 'events/utils/supporter_list.html' with title="Organizadores" event=event supporters=organizers %}
+		{% include 'events/utils/supporter_list.html' with title="Apoio" event=event supporters=promoters %}
 	</div>
 
 

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load i18n %}
 {% load widget_tweaks %}
 
 {% block content %}
@@ -70,7 +71,7 @@
 
 			<div class="card-action">
 		        <div class="row card-bottom-margin">
-		       		<button type="submit" class=" waves-effect waves-light btn blue">Submit</button>
+		       		<button type="submit" class=" waves-effect waves-light btn blue">{% trans "Save" %}</button>
 		    	</div>
 		    </div>
 		</form>

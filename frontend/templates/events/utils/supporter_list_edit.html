@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="container">
 	<div class="row">					
 	    <ul class="collection with-header list list-supporters">
@@ -6,7 +8,7 @@
 	        		{{ title }}
 		        	<a class="supporter-button waves-effect waves-light btn blue" 
 		        		href="{% url 'events:supporter_create' event.pk %}">
-		        			Adicionar Supporter
+		        			Adicionar {% trans "Supporter" %}
 		        	</a>
 	        	</h4></li>
 	    	{% for supporter in supporters %}	
@@ -24,7 +26,9 @@
 		    </li>
 
 		    {% empty %}
-		    	<li class="collection-item"><p>Esse evento ainda não possui nenhum {{ title }}</p></li>
+		    	<li class="collection-item"><p>Esse evento ainda não possui nenhum 
+		    		{{ subtitle }}
+		    	</p></li>
 		    {% endfor %}
 		</ul>
 	</div>

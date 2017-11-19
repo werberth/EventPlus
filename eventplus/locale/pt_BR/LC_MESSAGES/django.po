@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-18 01:52-0300\n"
+"POT-Creation-Date: 2017-11-19 02:09-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr ""
 
 #: eventplus/events/models.py:11
 msgid "User"
-msgstr ""
+msgstr "Usuário"
 
 #: eventplus/events/models.py:13 eventplus/events/models.py:44
 #: eventplus/talks/models.py:9
@@ -64,10 +64,8 @@ msgid "Slug"
 msgstr "Slug"
 
 #: eventplus/events/models.py:15
-#, fuzzy
-#| msgid "Email address"
 msgid "Address"
-msgstr "Endereço de Email"
+msgstr "Endereço"
 
 #: eventplus/events/models.py:16
 msgid "City"
@@ -106,6 +104,7 @@ msgid "Organizers"
 msgstr "Organizadores"
 
 #: eventplus/events/models.py:41 eventplus/talks/models.py:13
+#: frontend/templates/events/my_events.html:11
 msgid "Event"
 msgstr "Evento"
 
@@ -197,4 +196,42 @@ msgstr "Date"
 
 #: eventplus/talks/models.py:44
 msgid "Explanatory File"
-msgstr "Arquivo da Apresentação"
+msgstr "Arquivo Explicativo (Link)"
+
+#: frontend/templates/accounts/crud_accounts.html:23
+#: frontend/templates/events/crud_event.html:61
+#: frontend/templates/events/crud_supporter.html:36
+#: frontend/templates/talks/crud_interval.html:44
+#: frontend/templates/talks/crud_room.html:22
+#: frontend/templates/talks/crud_talk.html:74
+msgid "Save"
+msgstr "Salvar"
+
+#: frontend/templates/accounts/login.html:23
+msgid "Sign in"
+msgstr "Entrar"
+
+#: frontend/templates/events/event_list.html:8
+msgid "Event List"
+msgstr "Eventos"
+
+#: frontend/templates/events/my_events.html:10
+msgid "My Events"
+msgstr "Meus Eventos"
+
+#: frontend/templates/events/utils/supporter_list_edit.html:11
+msgid "Supporter"
+msgstr "Colaborador"
+
+#: frontend/templates/talks/list_rooms.html:10
+msgid "Rooms"
+msgstr "Salas"
+
+#: frontend/templates/talks/talk_list.html:6
+#: frontend/templates/talks/talk_list_edit.html:8
+msgid "Talk List"
+msgstr "Palestras"
+
+#: frontend/templates/talks/talk_list_edit.html:9
+msgid "Talk"
+msgstr "Palestra"
