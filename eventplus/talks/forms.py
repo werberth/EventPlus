@@ -98,6 +98,9 @@ class TalkForm(CleanDate, FormKwargsEvent):
         self.fields['description_file'].required = True
         self.fields['is_interval'].required = False
         self.fields['room'].required = True
+        self.fields['room'].queryset = Room.objects.filter(
+            event__pk=self.event.pk
+        )
 
     def clean_talk_title(self):
         data = self.cleaned_data['talk_title']
