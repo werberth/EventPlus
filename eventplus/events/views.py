@@ -10,6 +10,16 @@ from .forms import CreateEventForm, SupporterForm
 
 
 class KwargsEventView(object):
+
+    """
+        classe que sobrescreve o methodo get_form_kwargs
+        para adicionar o evento ao formulário.
+        Essa classe deverá ser herdada pro todas as views
+        que utilizaram formulários que nescessitaram adicionar
+        o evento automaticamente a alguma instancia de um model
+        no momento de sua criação.
+    """
+
     def get_form_kwargs(self):
         kwargs = super(KwargsEventView, self).get_form_kwargs()
         kwargs['event'] = get_object_or_404(Event, pk=self.kwargs['event'])
@@ -17,6 +27,16 @@ class KwargsEventView(object):
 
 
 class KwargsUserView(object):
+
+    """
+        classe que sobrescreve o methodo get_form_kwargs
+        para adicionar o usuario ao formulário.
+        Essa classe deverá ser herdada pro todas as views
+        que utilizaram formulários que nescessitaram adicionar
+        o usuario automaticamente a alguma instancia de um model
+        no momento de sua criação.
+    """
+
     def get_form_kwargs(self):
         kwargs = super(KwargsUserView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
@@ -24,6 +44,11 @@ class KwargsUserView(object):
 
 
 class CreateEventView(LoginRequiredMixin, KwargsUserView, generic.CreateView):
+
+    """
+        View de criação do evento.
+    """
+
     model = Event
     form_class = CreateEventForm
     template_name = 'events/crud_event.html'
@@ -43,6 +68,11 @@ class UpdateEventView(
         LoginRequiredMixin,
         KwargsUserView,
         generic.UpdateView):
+
+    """
+        View de edição dos dados do evento.
+    """
+
     model = Event
     form_class = CreateEventForm
     template_name = 'events/crud_event.html'
@@ -58,6 +88,11 @@ class UpdateEventView(
 
 
 class DeleteEventView(LoginRequiredMixin, generic.DeleteView):
+
+    """
+        View de exclusão de um evento dado. (passado pela url)
+    """
+
     model = Event
     success_url = r('events:myevents')
 
@@ -66,6 +101,12 @@ class DeleteEventView(LoginRequiredMixin, generic.DeleteView):
 
 
 class ListEventView(generic.ListView):
+
+    """
+        View de listagem dos eventos, que servirá também
+        como pagina inicial da aplicação.
+    """
+
     model = Event
 
     queryset = Event.objects.filter(
@@ -78,6 +119,12 @@ class ListEventView(generic.ListView):
 
 
 class MyEventsView(LoginRequiredMixin, generic.ListView):
+
+    """
+        View de listagem dos eventos criados pelo usuário autenticado.
+        O usuário ao efetuar login será redirecionado para a url dessa view
+    """
+
     model = Event
     template_name = 'events/my_events.html'
     context_object_name = 'events'
@@ -91,6 +138,12 @@ class MyEventsView(LoginRequiredMixin, generic.ListView):
 
 
 class EventView(generic.TemplateView):
+
+    """
+        View de visualĩzação de um evento, por um usuário
+        não autenticado, ou que não é o dono (moderador) do evento.
+    """
+
     template_name = 'events/event.html'
 
     def get_context_data(self, **kwargs):
@@ -124,6 +177,13 @@ class EventView(generic.TemplateView):
 
 
 class EventEditView(LoginRequiredMixin, EventView):
+
+    """
+        View de visualização e organização (edição) de um dado evento
+        pelo seu criador. Após criar um determinado evento, o
+        usuário será redirecionado para essa pagina.
+    """
+
     template_name = 'events/event_edit.html'
 
     def get_context_data(self, **kwargs):
@@ -143,6 +203,10 @@ class CreateSupporterView(
         LoginRequiredMixin,
         KwargsEventView,
         generic.CreateView):
+
+    """
+        View de criação de um colaborador
+    """
 
     model = Supporters
     form_class = SupporterForm
@@ -164,6 +228,10 @@ class UpdateSupporterView(
         KwargsEventView,
         generic.UpdateView):
 
+    """
+        View de edição de um colaborador
+    """
+
     model = Supporters
     form_class = SupporterForm
     template_name = 'events/crud_supporter.html'
@@ -180,6 +248,10 @@ class UpdateSupporterView(
 
 
 class DeleteSupporterView(LoginRequiredMixin, generic.DeleteView):
+    """
+        View de exclusão de um dado colaborador
+    """
+
     model = Supporters
     success_url = r('events:supporter_create')
 

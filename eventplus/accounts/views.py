@@ -10,10 +10,22 @@ from .forms import CreateUserForm, UpdateUserForm
 
 
 class IndexView(generic.RedirectView):
+
+    """
+    View de homepage que redirecionárá para pagina de
+    Listagem dos eventos, quando a url '/' for acessada.
+    """
+
     def dispatch(self, request, *args, **kwargs):
         return HttpResponseRedirect(r('events:list'))
 
+
 class CreateUserView(generic.CreateView):
+
+    """
+    View de criação do usuário
+    """
+
     model = User
     form_class = CreateUserForm
     template_name = 'accounts/crud_accounts.html'
@@ -30,6 +42,11 @@ class CreateUserView(generic.CreateView):
 
 
 class UpdateUserView(LoginRequiredMixin, generic.UpdateView):
+
+    """
+        View de edição dos dados do usuário (email e username)
+    """
+
     model = User
     form_class = UpdateUserForm
     template_name = 'accounts/crud_accounts.html'
@@ -41,6 +58,11 @@ class UpdateUserView(LoginRequiredMixin, generic.UpdateView):
 
 
 class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
+
+    """
+        View de alteração de senha
+    """
+
     model = User
     form_class = SetPasswordForm
     template_name = 'accounts/crud_accounts.html'

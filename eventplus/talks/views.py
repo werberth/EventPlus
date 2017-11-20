@@ -11,6 +11,11 @@ from eventplus.events.models import Event
 
 
 class CreateRoomView(LoginRequiredMixin, KwargsEventView, generic.CreateView):
+
+    """
+        View de criação de uma sala
+    """
+
     model = Room
     form_class = RoomForm
     template_name = 'talks/crud_room.html'
@@ -26,6 +31,11 @@ class CreateRoomView(LoginRequiredMixin, KwargsEventView, generic.CreateView):
 
 
 class UpdateRoomView(LoginRequiredMixin, KwargsEventView, generic.UpdateView):
+
+    """
+        View de edição de uma sala
+    """
+
     model = Room
     form_class = RoomForm
     template_name = 'talks/crud_room.html'
@@ -41,6 +51,11 @@ class UpdateRoomView(LoginRequiredMixin, KwargsEventView, generic.UpdateView):
 
 
 class DeleteRoomView(LoginRequiredMixin, generic.DeleteView):
+
+    """
+        View de exclusão de uma determinada sala
+    """
+
     model = Room
     form_class = RoomForm
     success_url = r('talks:room_create')
@@ -59,6 +74,11 @@ class DeleteRoomView(LoginRequiredMixin, generic.DeleteView):
 
 
 class ListRoomView(LoginRequiredMixin, KwargsEventView, generic.ListView):
+
+    """
+        View de listagem das salas
+    """
+
     model = Room
     template_name = 'talks/list_rooms.html'
     context_object_name = 'rooms'
@@ -76,6 +96,11 @@ class ListRoomView(LoginRequiredMixin, KwargsEventView, generic.ListView):
 
 
 class CreateTalkView(LoginRequiredMixin, KwargsEventView, generic.CreateView):
+
+    """
+        View de criação de um palestra
+    """
+
     model = Talk
     form_class = TalkForm
     template_name = 'talks/crud_talk.html'
@@ -95,6 +120,10 @@ class CreateIntervalView(
         LoginRequiredMixin,
         KwargsEventView,
         generic.CreateView):
+
+    """
+        View de criação de um intervalo
+    """
 
     model = Talk
     form_class = IntervalForm
@@ -116,6 +145,10 @@ class UpdateIntervalView(
         KwargsEventView,
         generic.UpdateView):
 
+    """
+        View de edição dos dados do intervalo
+    """
+
     model = Talk
     form_class = IntervalForm
     template_name = 'talks/crud_interval.html'
@@ -132,6 +165,11 @@ class UpdateIntervalView(
 
 
 class UpdateTalkView(LoginRequiredMixin, KwargsEventView, generic.UpdateView):
+
+    """
+        View de edição de uma palestra
+    """
+
     model = Talk
     form_class = TalkForm
     template_name = 'talks/crud_talk.html'
@@ -148,6 +186,11 @@ class UpdateTalkView(LoginRequiredMixin, KwargsEventView, generic.UpdateView):
 
 
 class DeleteIntervalView(LoginRequiredMixin, generic.DeleteView):
+
+    """
+        View de exclusão de intervalo
+    """
+
     model = Talk
 
     def get_success_url(self):
@@ -164,6 +207,11 @@ class DeleteIntervalView(LoginRequiredMixin, generic.DeleteView):
 
 
 class DeleteTalkView(LoginRequiredMixin, generic.DeleteView):
+
+    """
+        View de exclusão de uma palestra
+    """
+
     model = Talk
 
     def get(self, request, *args, **kwargs):
