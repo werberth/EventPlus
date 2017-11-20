@@ -48,11 +48,13 @@
 
 			    <div id="talk_{{ talk.pk }}" class="modal">
 				    <div class="modal-content">
+				    {% if not talk.is_interval %}  
 				      <h6>{{ talk.talk_title }} - por {{ talk.speaker_name }}</h6>
-
-                    {% if not talk.is_interval %}  
+                    
 				      <img src="{{ talk.speaker_photo }}" class="circle right">
                       <p><span>Descrição do Palestrante:</span> {{ talk.speaker_description }}</p>
+                    {% else %}
+                    	<h6>Intervalo</h6>
                     {% endif %}
 
 				      <p><span>Descrição da Palestra:</span> {{ talk.talk_description }}</p>
