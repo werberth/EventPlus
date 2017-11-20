@@ -99,7 +99,6 @@ class EventView(generic.TemplateView):
         context['event'] = event
         context['all_talks'] = self.select_talks_by_day(event)
         context = self.get_supporters(context, event)
-        print(context)
         return context
 
     def get_supporters(self, context, event):
@@ -137,7 +136,6 @@ class EventEditView(LoginRequiredMixin, EventView):
         context['event'] = event
         context['all_talks'] = self.select_talks_by_day(event)
         context = self.get_supporters(context, event)
-        print(context)
         return context
 
 
