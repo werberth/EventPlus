@@ -52,10 +52,10 @@
 
                     {% if not talk.is_interval %}  
 				      <img src="{{ talk.speaker_photo }}" class="circle right">
-                      <p><span>Speaker Description:</span> {{ talk.speaker_description }}</p>
+                      <p><span>Descrição do Palestrante:</span> {{ talk.speaker_description }}</p>
                     {% endif %}
 
-				      <p><span>Talk Description:</span> {{ talk.talk_description }}</p>
+				      <p><span>Descrição da Palestra:</span> {{ talk.talk_description }}</p>
 
 				    {% if not talk.is_interval %}    
                       <p><span>Sala:</span> {{ talk.room }} </p>
