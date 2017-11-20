@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from ..models import Event
 
 
-class EventModelTest(TestCase):
+class EventSetup(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
             username="user",
@@ -24,6 +24,9 @@ class EventModelTest(TestCase):
             start_at=datetime.time(8),
             end_at=datetime.time(17),
         )
+
+
+class EventModelTest(EventSetup):
 
     def test_create(self):
         self.assertTrue(Event.objects.exists())
