@@ -60,10 +60,14 @@ class CreateEventForm(FormKwargsUser):
     def clean_name(self):
         data = self.cleaned_data['name']
         if Event.objects.filter(name=data).exists():
-            raise forms.ValidationError(
-                _("An event with this name already exists on\
+            if hasattr(self, 'instance'):
+                error_message = _("An event with this name already exists on\
                 the platform, enter another name, and try again.")
-            )
+                event_search = Event.objects.get(name=data)
+                if (event_search.pk != self.instance.pk):
+                    raise forms.ValidationError(error_message)
+                return data
+            raise forms.ValidationError(error_message)
         return data
 
     def save(self, commit=True):
